@@ -1,0 +1,68 @@
+---
+const rows = [
+  {
+    metric: 'Velocidad en celular (Digitel/Movistar)',
+    old: 'Lenta — 4 a 8 segundos por plugins pesados',
+    new: 'Instantanea — menos de 1 segundo, codigo limpio',
+  },
+  {
+    metric: 'Seguridad',
+    old: 'Vulnerable — base de datos y plugins expuestos',
+    new: 'Inmune — sitios estaticos sin base de datos',
+  },
+  {
+    metric: 'Costo mensual',
+    old: '$15 a $20 dolares de por vida',
+    new: '$0 mensual. Un solo pago anual transparente',
+  },
+  {
+    metric: 'Rendimiento en Google',
+    old: 'Promedio 50/100 — penalizado por peso',
+    new: '100/100 Perfecto — optimizacion nativa',
+  },
+  {
+    metric: 'Mantenimiento',
+    old: 'Constante — actualizar plugins, parches de seguridad',
+    new: 'Cero mantenimiento — el sitio se mantiene solo',
+  },
+]
+---
+
+<section class="border-t border-cry-border/30 px-6 py-24">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-4 text-center font-mono text-xs text-cry-muted/60">// comparativa</div>
+    <h2 class="mb-4 text-center text-3xl font-black tracking-tight sm:text-4xl">
+      CRYFIELD VS <span class="text-cry-red/70">WORDPRESS</span>
+    </h2>
+    <p class="mb-12 text-center text-sm text-cry-muted">
+      No es opinion, es matematica. Comparamos lo que ofrecemos contra lo que venden las agencias tradicionales.
+    </p>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="border-b border-cry-border/50">
+            <th class="px-4 py-4 text-left font-mono text-xs font-medium text-cry-muted uppercase tracking-wider">Caracteristica</th>
+            <th class="px-4 py-4 text-left font-mono text-xs font-medium text-cry-red/60 uppercase tracking-wider">Agencias (WordPress/Wix)</th>
+            <th class="px-4 py-4 text-left font-mono text-xs font-medium text-cry-lime uppercase tracking-wider">Cryfield.dev (Astro/React)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr class="border-b border-cry-border/15 transition-colors hover:bg-cry-card/30">
+              <td class="px-4 py-5 font-mono text-sm font-semibold text-cry-text">{row.metric}</td>
+              <td class="px-4 py-5 text-sm text-cry-muted">{row.old}</td>
+              <td class="px-4 py-5 text-sm text-cry-lime">{row.new}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-8 rounded-lg border border-cry-red/15 bg-cry-red/[0.02] p-4">
+      <p class="font-mono text-xs text-cry-red/70">
+        Dato real: los sitios WordPress en Venezuela cargan en promedio 6.2 segundos en 4G. El 53% de los usuarios abandona la pagina si tarda mas de 3 segundos en cargar. Estas perdiendo clientes sin saberlo.
+      </p>
+    </div>
+  </div>
+</section>

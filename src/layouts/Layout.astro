@@ -1,0 +1,115 @@
+---
+import '../styles/global.css'
+import { Font } from 'astro:assets'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const title = 'Cryfield.dev — Sitios web ultra rápidos para tu negocio'
+const description = 'Desarrollamos sitios web con Astro y React. Velocidad letal para redes móviles venezolanas, seguridad inmune a hackeos y cero mensualidades.'
+const whatsapp = 'https://wa.me/584241717524?text=Quiero%20desplegar%20mi%20proyecto%20con%20Cryfield.dev'
+---
+
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Cryfield.dev" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cryfield.dev" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <Font cssVariable="--font-sans" preload />
+    <Font cssVariable="--font-mono" preload />
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+  </head>
+  <body class="min-h-screen bg-cry-darkest text-cry-text antialiased">
+    <div id="crosshair"><div class="cursor-block"></div></div>
+    <div id="crt-overlay"></div>
+
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-cry-border/40 bg-cry-darkest/80 backdrop-blur-md">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <a href="/" class="font-mono text-lg font-bold tracking-tight text-cry-lime">
+          &lt;<span class="text-cry-text">CF</span>/&gt;
+          <span class="ml-2 text-xs font-normal text-cry-muted">cryfield.dev</span>
+        </a>
+        <div class="hidden items-center gap-6 text-sm text-cry-muted sm:flex">
+          <a href="#problema" class="transition-colors hover:text-cry-lime">El problema</a>
+          <a href="#soluciones" class="transition-colors hover:text-cry-lime">Soluciones</a>
+          <a href="#precios" class="transition-colors hover:text-cry-lime">Precios</a>
+          <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="rounded border border-cry-lime/40 bg-cry-lime/10 px-4 py-1.5 font-mono text-xs font-medium text-cry-lime transition-all hover:bg-cry-lime/20">
+            CONTACTO
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-cry-border/30 py-12">
+      <div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
+        <a href="/" class="font-mono text-lg font-bold text-cry-lime">
+          &lt;<span class="text-cry-text">CF</span>/&gt;
+        </a>
+        <div class="flex flex-wrap justify-center gap-6 text-sm text-cry-muted">
+          <a href="#problema" class="transition-colors hover:text-cry-lime">El problema</a>
+          <a href="#soluciones" class="transition-colors hover:text-cry-lime">Soluciones</a>
+          <a href="#precios" class="transition-colors hover:text-cry-lime">Precios</a>
+          <a href="#faq" class="transition-colors hover:text-cry-lime">Preguntas</a>
+          <a href="https://github.com/CryfieldDev" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 transition-colors hover:text-cry-lime">
+            <lord-icon src="/icons/github.json" trigger="hover" colors="primary:#6b6b6b" style="width:16px;height:16px"></lord-icon>
+            GitHub
+          </a>
+        </div>
+        <p class="text-xs text-cry-muted/50">
+          &copy; {new Date().getFullYear()} Cryfield.dev &mdash; Ingeniería web de alto rendimiento hecha en Venezuela
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const crosshair = document.getElementById('crosshair')
+      let mx = 0, my = 0
+
+      document.addEventListener('mousemove', (e) => {
+        mx = e.clientX
+        my = e.clientY
+        crosshair.style.left = mx + 'px'
+        crosshair.style.top = my + 'px'
+      })
+
+      document.addEventListener('click', (e) => {
+        const chars = '0123456789ABCDEF'
+        const count = 6 + Math.floor(Math.random() * 4)
+        const fragment = document.createDocumentFragment()
+
+        for (let i = 0; i < count; i++) {
+          const span = document.createElement('span')
+          span.className = 'hex-particle'
+          span.textContent = chars[Math.floor(Math.random() * 16)] + chars[Math.floor(Math.random() * 16)]
+          span.style.left = (e.clientX + (Math.random() - 0.5) * 80) + 'px'
+          span.style.top = (e.clientY + (Math.random() - 0.5) * 80) + 'px'
+          span.style.animationDelay = (Math.random() * 0.15) + 's'
+          fragment.appendChild(span)
+        }
+
+        document.body.appendChild(fragment)
+        setTimeout(() => {
+          fragment.querySelectorAll('.hex-particle').forEach(el => el.remove())
+        }, 900)
+      })
+    </script>
+  </body>
+</html>

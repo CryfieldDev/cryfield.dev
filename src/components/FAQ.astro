@@ -1,0 +1,62 @@
+---
+const faqs = [
+  {
+    q: 'Que tan rapido entregan mi sitio?',
+    a: 'Entre 48 y 72 horas habiles. Una vez que nos confirmes el plan y nos pases la informacion de tu negocio, empezamos inmediatamente. La mayoria de los sitios estan listos en 2 dias.',
+  },
+  {
+    q: 'Que pasa si no se como funciona esto?',
+    a: 'Tranquilo, para eso estamos. Tu solo nos dices que necesitas y nosotros nos encargamos de todo: dominio, hosting, diseño, desarrollo, indexacion en Google. No necesitas saber de tecnologia.',
+  },
+  {
+    q: 'Es verdad que no pago mensualidades?',
+    a: 'Si. Pagas una sola vez al contratar y listo. El dominio y el hosting del primer año van incluidos. Al año siguiente, si quieres mantener tu sitio activo, pagas solo $50 por todo el año. Sin mensualidades, sin intereses, sin clausulas ocultas.',
+  },
+  {
+    q: 'Y si necesito cambios despues?',
+    a: 'Cada cambio que necesites (actualizar precios, agregar fotos, modificar texto) tiene un costo de $10. Nos escribes, te cotizamos si es algo simple, lo actualizamos y en horas esta listo. Sin contratos de mantenimiento.',
+  },
+  {
+    q: 'Que incluye el hosting?',
+    a: 'Tu sitio vive en servidores en Alemania (Hetzner). Esto significa carga rapida desde cualquier parte del mundo, certificado SSL automatico (el candadito verde), y respaldo diario. Nuestros servidores tienen 20TB de transferencia al mes, mas que suficiente para cualquier negocio local.',
+  },
+  {
+    q: 'Como recibo los pedidos de mi web?',
+    a: 'Integramos tu sitio con WhatsApp. Cuando un cliente haga un pedido o solicite una cita, el mensaje llega directamente a tu numero de WhatsApp con todos los datos formateados. No necesitas revisar un correo ni un panel administrativo.',
+  },
+  {
+    q: 'Mi sitio va a aparecer en Google?',
+    a: 'Si. Todo sitio que entregamos esta optimizado para motores de busqueda. Conseguimos puntuacion perfecta de 100/100 en Lighthouse de Google. Ademas te ayudamos con la indexacion inicial.',
+  },
+  {
+    q: 'Que metodos de pago aceptan?',
+    a: 'Aceptamos pago movil en bolivares a la tasa del BCV del dia, transferencia en dolares (Zelle, Paypal) o USDT por Binance. Te damos todas las opciones para que elijas la mas comoda.',
+  },
+]
+---
+
+<section id="faq" class="border-t border-cry-border/30 px-6 py-24">
+  <div class="mx-auto max-w-3xl">
+    <div class="mb-4 text-center font-mono text-xs text-cry-muted/60">// preguntas frecuentes</div>
+    <h2 class="mb-4 text-center text-3xl font-black tracking-tight sm:text-4xl">
+      TODO LO QUE <span class="text-cry-lime">NECESITAS SABER</span>
+    </h2>
+    <p class="mb-12 text-center text-sm text-cry-muted">
+      Respuestas directas, sin rodeos, sin terminologia tecnica.
+    </p>
+
+    <div class="space-y-3">
+      {faqs.map((faq) => (
+        <details class="group rounded-lg border border-cry-border/20 bg-cry-card/20 transition-all hover:border-cry-border/40 [&[open]]:border-cry-lime/20">
+          <summary class="flex cursor-pointer items-center justify-between px-5 py-4 font-mono text-sm font-medium text-cry-text transition-colors hover:text-cry-lime">
+            <span>{faq.q}</span>
+            <span class="text-lg text-cry-muted transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div class="border-t border-cry-border/20 px-5 py-4 text-sm leading-relaxed text-cry-muted">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

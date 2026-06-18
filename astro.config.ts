@@ -1,0 +1,26 @@
+import { defineConfig, fontProviders } from 'astro/config'
+import tailwindcss from '@tailwindcss/vite'
+import react from '@astrojs/react'
+import sitemap from '@astrojs/sitemap'
+
+export default defineConfig({
+  site: 'https://cryfield.dev',
+  integrations: [react(), sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: 'JetBrains Mono',
+      cssVariable: '--font-mono',
+      weights: ['400', '500', '700'],
+    },
+    {
+      provider: fontProviders.google(),
+      name: 'Inter',
+      cssVariable: '--font-sans',
+      weights: ['300', '400', '500', '600', '700', '800', '900'],
+    },
+  ],
+})

@@ -1,0 +1,45 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Escribenos por WhatsApp',
+    desc: 'Nos cuentas de tu negocio, que necesitas y cuanto presupuesto manejas. En 15 minutos te damos un estimado claro sin compromiso.',
+    detail: 'Sin vueltas, sin reuniones eternas, sin papeleo.',
+  },
+  {
+    num: '02',
+    title: 'Desarrollamos tu sitio',
+    desc: 'Construimos tu pagina con Astro y React. Optimizada para moviles venezolanos, con tu dominio incluido y hosting en servidores alemanes.',
+    detail: 'Tu sitio queda listo en 48 horas. No semanas.',
+  },
+  {
+    num: '03',
+    title: 'Recibes y vendes',
+    desc: 'Te entregamos el sitio funcionando, indexado en Google y listo para recibir clientes. Pagas una sola vez y el primer año de hosting va incluido.',
+    detail: 'Al renovar, pagas solo $50 por todo el año.',
+  },
+]
+---
+
+<section class="border-t border-cry-border/30 px-6 py-24">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-4 text-center font-mono text-xs text-cry-muted/60">// proceso</div>
+    <h2 class="mb-4 text-center text-3xl font-black tracking-tight sm:text-4xl">
+      COMO <span class="text-cry-lime">FUNCIONA</span>
+    </h2>
+    <p class="mb-14 text-center text-sm text-cry-muted">
+      Tres pasos. Sin complicaciones. Sin contratos eternos.
+    </p>
+
+    <div class="grid gap-8 md:grid-cols-3">
+      {steps.map((s) => (
+        <div class="group relative rounded-lg border border-cry-border/30 bg-cry-card/30 p-6 transition-all hover:border-cry-lime/20">
+          <div class="mb-4 font-mono text-4xl font-black text-cry-lime/30">{s.num}</div>
+          <h3 class="mb-3 font-mono text-base font-bold text-cry-text">{s.title}</h3>
+          <p class="mb-3 text-sm leading-relaxed text-cry-muted">{s.desc}</p>
+          <div class="text-xs italic text-cry-muted/40">{s.detail}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

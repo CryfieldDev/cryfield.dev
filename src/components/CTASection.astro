@@ -1,0 +1,154 @@
+<section id="contacto" class="border-t border-cry-border/30 px-6 py-24 scroll-mt-20">
+  <div class="mx-auto max-w-2xl text-center">
+    <div class="mb-4 font-mono text-xs text-cry-muted/60">// ultimo paso</div>
+    <h2 class="mb-4 text-3xl font-black tracking-tight sm:text-4xl">
+      ¿CUANDO <span class="text-cry-lime">EMPEZAMOS</span>?
+    </h2>
+    <p class="mb-10 text-sm text-cry-muted">
+      Contanos de tu negocio y en 48 horas tenes tu sitio web en produccion. Todos los campos son obligatorios.
+    </p>
+
+    <div class="rounded-lg border border-cry-border/30 bg-cry-card/30 p-8">
+      <div class="mb-6 text-left font-mono text-[11px] text-cry-muted">
+        <span class="text-cry-lime">$</span> ./contactar --cryfield
+      </div>
+
+      <form id="cryfield-form" class="space-y-4 text-left" novalidate>
+        <div>
+          <label for="name" class="mb-1 block font-mono text-xs text-cry-muted">Tu nombre</label>
+          <input type="text" id="name" name="name" required placeholder="Ej: Maria Gonzalez" class="w-full rounded border border-cry-border/40 bg-cry-darkest/50 px-4 py-3 font-mono text-sm text-cry-text outline-none transition-all placeholder:text-cry-muted/20 focus:border-cry-lime/50 focus:shadow-[0_0_15px_rgba(163,230,53,0.05)]" />
+          <span class="mt-1 hidden font-mono text-[10px] text-cry-red">Completá este campo</span>
+        </div>
+
+        <div>
+          <label for="business" class="mb-1 block font-mono text-xs text-cry-muted">Nombre de tu negocio</label>
+          <input type="text" id="business" name="business" required placeholder="Ej: Panaderia La Popular" class="w-full rounded border border-cry-border/40 bg-cry-darkest/50 px-4 py-3 font-mono text-sm text-cry-text outline-none transition-all placeholder:text-cry-muted/20 focus:border-cry-lime/50 focus:shadow-[0_0_15px_rgba(163,230,53,0.05)]" />
+          <span class="mt-1 hidden font-mono text-[10px] text-cry-red">Completá este campo</span>
+        </div>
+
+        <div>
+          <label for="phone" class="mb-1 block font-mono text-xs text-cry-muted">Tu WhatsApp</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+58 412 123 4567" class="w-full rounded border border-cry-border/40 bg-cry-darkest/50 px-4 py-3 font-mono text-sm text-cry-text outline-none transition-all placeholder:text-cry-muted/20 focus:border-cry-lime/50 focus:shadow-[0_0_15px_rgba(163,230,53,0.05)]" />
+          <span class="mt-1 hidden font-mono text-[10px] text-cry-red">Completá este campo</span>
+        </div>
+
+        <div>
+          <label for="tipo" class="mb-1 block font-mono text-xs text-cry-muted">Tipo de negocio</label>
+          <select id="tipo" name="tipo" required class="w-full rounded border border-cry-border/40 bg-cry-darkest/50 px-4 py-3 font-mono text-sm text-cry-text outline-none transition-all focus:border-cry-lime/50">
+            <option value="">Seleccioná una opcion</option>
+            <option value="Gastronomia">Gastronomia</option>
+            <option value="Gimnasio / Fitness">Gimnasio / Fitness</option>
+            <option value="Consultorio / Salud">Consultorio / Salud</option>
+            <option value="Tienda / Retail">Tienda / Retail</option>
+            <option value="Tecnologia / Reparaciones">Tecnologia / Reparaciones</option>
+            <option value="Belleza / Estetica">Belleza / Estetica</option>
+            <option value="Inmobiliaria">Inmobiliaria</option>
+            <option value="Educacion / Clases">Educacion / Clases</option>
+            <option value="Servicios / Talleres">Servicios / Talleres</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <span class="mt-1 hidden font-mono text-[10px] text-cry-red">Seleccioná tu tipo de negocio</span>
+        </div>
+
+        <div id="otro-container" class="hidden">
+          <label for="otro-tipo" class="mb-1 block font-mono text-xs text-cry-muted">Escribí tu tipo de negocio</label>
+          <input type="text" id="otro-tipo" name="otro-tipo" placeholder="Ej: Taller mecanico" class="w-full rounded border border-cry-border/40 bg-cry-darkest/50 px-4 py-3 font-mono text-sm text-cry-text outline-none transition-all placeholder:text-cry-muted/20 focus:border-cry-lime/50 focus:shadow-[0_0_15px_rgba(163,230,53,0.05)]" />
+          <span class="mt-1 hidden font-mono text-[10px] text-cry-red">Escribí tu tipo de negocio</span>
+        </div>
+
+        <div>
+          <label for="plan" class="mb-1 block font-mono text-xs text-cry-muted">Plan que te interesa</label>
+          <select id="plan" name="plan" required class="w-full rounded border border-cry-border/40 bg-cry-darkest/50 px-4 py-3 font-mono text-sm text-cry-text outline-none transition-all focus:border-cry-lime/50">
+            <option value="">Seleccioná un plan</option>
+            <option value="Economico $99.99">Economico — $99.99 USD</option>
+            <option value="Starter $139.99">Starter — $139.99 USD</option>
+            <option value="Custom $299.99">Custom — $299.99 USD</option>
+            <option value="No estoy seguro">No estoy seguro / Quiero mas info</option>
+          </select>
+          <span class="mt-1 hidden font-mono text-[10px] text-cry-red">Seleccioná un plan</span>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn-compile w-full rounded border border-cry-lime/40 bg-cry-lime/10 px-6 py-4 font-mono text-sm font-bold text-cry-lime">
+          <span id="btn-text">ENVIAR POR WHATSAPP →</span>
+          <span id="btn-compiling" class="hidden">[COMPILANDO...]</span>
+          <span id="btn-sent" class="hidden">[✓ ENVIADO]</span>
+        </button>
+      </form>
+
+      <p class="mt-4 text-xs text-cry-muted/40">
+        Te redirigimos a WhatsApp con todos tus datos listos. Sin spam, sin compromiso, sin llamadas molestas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('cryfield-form')
+  const tipoSelect = document.getElementById('tipo')
+  const otroContainer = document.getElementById('otro-container')
+  const otroInput = document.getElementById('otro-tipo')
+
+  tipoSelect.addEventListener('change', () => {
+    if (tipoSelect.value === 'Otro') {
+      otroContainer.classList.remove('hidden')
+      otroInput.required = true
+    } else {
+      otroContainer.classList.add('hidden')
+      otroInput.required = false
+      otroInput.value = ''
+    }
+  })
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault()
+    let valid = true
+    const required = form.querySelectorAll('[required]')
+    const btn = document.getElementById('submit-btn')
+    const btnText = document.getElementById('btn-text')
+    const btnCompiling = document.getElementById('btn-compiling')
+    const btnSent = document.getElementById('btn-sent')
+
+    required.forEach((field) => {
+      const container = field.closest('div')
+      const errorSpan = container.querySelector('span.font-mono')
+      if (errorSpan) errorSpan.classList.add('hidden')
+      field.classList.remove('border-cry-red/60', 'focus:border-cry-red/60')
+
+      if (field.closest('.hidden')) return
+      if (!field.value.trim()) {
+        valid = false
+        field.classList.add('border-cry-red/60', 'focus:border-cry-red/60')
+        if (errorSpan) errorSpan.classList.remove('hidden')
+      }
+    })
+
+    if (!valid) return
+
+    btnText.classList.add('hidden')
+    btnCompiling.classList.remove('hidden')
+    btn.disabled = true
+
+    setTimeout(() => {
+      btnCompiling.classList.add('hidden')
+      btnSent.classList.remove('hidden')
+
+      const name = document.getElementById('name').value.trim()
+      const business = document.getElementById('business').value.trim()
+      const phone = document.getElementById('phone').value.trim()
+      const tipo = tipoSelect.value === 'Otro' ? otroInput.value.trim() : tipoSelect.value
+      const plan = document.getElementById('plan').value
+
+      const msg = encodeURIComponent(
+        `Hola Cryfield!\n\nQuiero desplegar mi proyecto\n\n- Nombre: ${name}\n- Negocio: ${business}\n- WhatsApp: ${phone}\n- Tipo: ${tipo}\n- Plan: ${plan}\n\nComo seguimos?`
+      )
+
+      window.open(`https://wa.me/584241717524?text=${msg}`, '_blank')
+
+      setTimeout(() => {
+        btnSent.classList.add('hidden')
+        btnText.classList.remove('hidden')
+        btn.disabled = false
+      }, 2500)
+    }, 800)
+  })
+</script>

@@ -1,0 +1,61 @@
+---
+const problems = [
+  {
+    icon: '/icons/timer.json',
+    title: 'Tu pagina tarda 6 segundos en cargar',
+    desc: 'En Venezuela el 4G es inestable. Si tu web demora mas de 3 segundos, pierdes mas de la mitad de tus clientes antes de que vean tu producto.',
+    stat: '53% de los usuarios abandonan si carga lento',
+  },
+  {
+    icon: '/icons/coins.json',
+    title: 'Pagas renta todos los meses sin razon',
+    desc: 'Las agencias te venden un sitio en WordPress y te cobran $15-$20 mensuales por "mantenimiento". Un sitio bien hecho no necesita mantenimiento mensual.',
+    stat: 'Ahorras hasta $240 al año con pago unico',
+  },
+  {
+    icon: '/icons/lock.json',
+    title: 'Tu web puede ser hackeada hoy',
+    desc: 'WordPress y sus plugins son la puerta abierta para ataques. En Venezuela no hay cultura de seguridad digital. Nosotros eliminamos la base de datos por completo.',
+    stat: 'Zero sitios vulnerables en nuestra plataforma',
+  },
+  {
+    icon: '/icons/morph-search.json',
+    title: 'No estas apareciendo en Google',
+    desc: 'Un sitio lleno de plugins innecesarios pesa toneladas. Google castiga las paginas lentas. Nosotros optimizamos hasta el ultimo byte.',
+    stat: '100/100 en Lighthouse de Google',
+  },
+]
+---
+
+<section id="problema" class="border-t border-cry-border/30 px-6 py-24">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-4 text-center font-mono text-xs text-cry-muted/60">// diagnostico</div>
+    <h2 class="mb-4 text-center text-3xl font-black tracking-tight sm:text-4xl">
+      LA REALIDAD DEL COMERCIO <span class="text-cry-lime">EN VENEZUELA</span>
+    </h2>
+    <p class="mb-14 text-center text-sm text-cry-muted">
+      Las agencias tradicionales te venden humo. Sitios pesados, inseguros y con rentas eternas. Esto es lo que realmente esta pasando:
+    </p>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      {problems.map((p) => (
+        <div class="group rounded-lg border border-cry-border/30 bg-cry-card/30 p-6 transition-all hover:border-cry-lime/20">
+          <div class="mb-3 flex items-center justify-center">
+            <lord-icon src={p.icon} trigger="hover" colors="primary:#a3e635" style="width:40px;height:40px"></lord-icon>
+          </div>
+          <h3 class="mb-2 font-mono text-base font-bold text-cry-text">{p.title}</h3>
+          <p class="mb-3 text-sm leading-relaxed text-cry-muted">{p.desc}</p>
+          <div class="rounded bg-cry-lime/5 px-3 py-1.5 font-mono text-[11px] text-cry-lime">
+            $ {p.stat}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 rounded-lg border border-cry-lime/20 bg-cry-lime/[0.02] p-6 text-center">
+      <p class="font-mono text-sm text-cry-lime">
+        NO RESOLVEMOS ESTO. LO ELIMINAMOS POR COMPLETO.
+      </p>
+    </div>
+  </div>
+</section>

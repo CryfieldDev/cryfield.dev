@@ -1,0 +1,75 @@
+---
+const solutions = [
+  {
+    title: 'Gastronomia',
+    icon: '/icons/food.json',
+    desc: 'Menu digital interactivo con carrito que envia pedidos formateados directo al WhatsApp del restaurante.',
+  },
+  {
+    title: 'Gimnasios',
+    icon: '/icons/gym.json',
+    desc: 'Landing de captacion con horarios, parrilla de clases y agendamiento de prueba gratis al staff.',
+  },
+  {
+    title: 'Consultorios',
+    icon: '/icons/shield.json',
+    desc: 'Tarjeta de presentacion digital con credenciales, testimonios y solicitud de citas optimizada.',
+  },
+  {
+    title: 'Tiendas',
+    icon: '/icons/morph-shopping.json',
+    desc: 'Catalogo de productos, carrito de compras y pedidos que llegan directo a tu WhatsApp.',
+  },
+  {
+    title: 'Tecnologia',
+    icon: '/icons/tech.json',
+    desc: 'Pagina profesional para servicios tecnicos, reparaciones, soporte IT o desarrollo de software.',
+  },
+  {
+    title: 'Belleza',
+    icon: '/icons/beauty.json',
+    desc: 'Landing elegante para salones, barberias y centros de estetica con galeria de trabajos.',
+  },
+  {
+    title: 'Inmobiliarias',
+    icon: '/icons/legacy-home.json',
+    desc: 'Pagina con galeria de propiedades, filtros de busqueda y contacto directo a WhatsApp.',
+  },
+  {
+    title: 'Educacion',
+    icon: '/icons/morph-account.json',
+    desc: 'Landing para academias, profesores o cursos online con inscripciones y horarios.',
+  },
+  {
+    title: 'Servicios',
+    icon: '/icons/services.json',
+    desc: 'Presencia digital para talleres mecanicos, electricistas, plomeros y oficios en general.',
+  },
+]
+---
+
+<section id="soluciones" class="border-t border-cry-border/30 px-6 py-24">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-4 text-center font-mono text-xs text-cry-muted/60">// soluciones por negocio</div>
+    <h2 class="mb-4 text-center text-3xl font-black tracking-tight sm:text-4xl">
+      9 RUBROS <span class="text-cry-lime">PARA ELEGIR</span>
+    </h2>
+    <p class="mb-10 text-center text-sm text-cry-muted">
+      Elegi el tuyo y te mostramos lo que podemos hacer
+    </p>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {solutions.map((sol) => (
+        <div class="group flex items-start gap-4 rounded-lg border border-cry-border/20 bg-cry-card/20 p-4 transition-all hover:border-cry-lime/20 hover:bg-cry-card/40">
+          <div class="flex-shrink-0">
+            <lord-icon src={sol.icon} trigger="hover" colors="primary:#a3e635" style="width:36px;height:36px"></lord-icon>
+          </div>
+          <div>
+            <h3 class="mb-1 font-mono text-sm font-bold text-cry-lime">{sol.title}</h3>
+            <p class="text-xs leading-relaxed text-cry-muted/70">{sol.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
