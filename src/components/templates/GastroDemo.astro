@@ -1,0 +1,550 @@
+﻿---
+const r = {
+  name: "El Fogon Criollo",
+  tagline: "Comida venezolana que abraza el alma",
+  slogan: "Desde 2015 llevando el sabor de Venezuela a tu mesa",
+  wa: "584200000000",
+  address: "Calle Bolivar, Centro Comercial Los Andes, Local 5",
+  schedule: "Lun-Sab: 11:00 - 22:00 | Dom: 12:00 - 20:00",
+  ig: "@elfogoncriollo",
+  fb: "elfogoncriollo",
+  x: "@elfogoncrio11",
+}
+
+const config = {
+  defaultCurrency: 'usd', // 'usd' or 'bs' — what customer sees by default
+  bsRate: 52.50,          // 1 USD = X Bs (seller sets this; 0 = auto from API fallback)
+  ivaOn: true,
+}
+
+const menu = [
+  { cat: "Entradas", items: [
+    { n: "Tequenos", d: "8 palitos de queso guayanes fritos", p: 5.50 },
+    { n: "Empanadas", d: "2 empanadas de carne mechada o pollo", p: 4.00 },
+    { n: "Arepitas", d: "4 mini arepitas con nata y queso", p: 3.50 },
+    { n: "Ceviche Peruano", d: "Ceviche clasico con chicharron de pescado", p: 7.00 },
+  ]},
+  { cat: "Principales", items: [
+    { n: "Pabellon Criollo", d: "Arroz, caraotas, carne mechada, tajadas y huevo", p: 12.00 },
+    { n: "Parrilla Mixta", d: "Costilla, chorizo, pollo y churrasco con guarnicion", p: 18.00 },
+    { n: "Asado Negro", d: "Carne de res en salsa oscura con arroz y tajadas", p: 14.00 },
+    { n: "Pescado Frito", d: "Pescado fresco frito con ensalada y patacones", p: 15.00 },
+  ]},
+  { cat: "Postres", items: [
+    { n: "Tres Leches", d: "Bizcocho banado en tres leches con merengue", p: 5.00 },
+    { n: "Bienmesabe", d: "Postre de coco y almibar con vainilla", p: 4.50 },
+    { n: "Quesillo", d: "Flan de queso horneado con caramelo", p: 4.00 },
+  ]},
+  { cat: "Bebidas", items: [
+    { n: "Papelon con Limon", d: "Refrescante jugo de papelon y limon", p: 2.50 },
+    { n: "Jugo de Parchita", d: "Maracuya natural colado", p: 3.00 },
+    { n: "Cocada", d: "Batido cremoso de coco", p: 3.50 },
+    { n: "Cerveza Polar", d: "Lata helada 355ml", p: 2.00 },
+  ]},
+]
+---
+
+<section class="min-h-screen bg-[#0c0a09] text-[#fef3c7] font-sans overflow-x-hidden">
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-amber-900/30 bg-[#0c0a09]/90 backdrop-blur-lg">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="#" class="font-mono text-lg font-bold tracking-wider text-amber-500">FOGON</a>
+      <div class="flex items-center gap-6">
+        <a href="#menu" class="hidden text-sm text-amber-300/70 transition-colors hover:text-amber-400 sm:block">Menu</a>
+        <a href="#resenas" class="hidden text-sm text-amber-300/70 transition-colors hover:text-amber-400 sm:block">Resenas</a>
+        <button id="open-cart-btn" class="relative flex items-center gap-2 rounded-full border border-amber-700/40 bg-amber-900/20 px-4 py-2 text-sm text-amber-400 transition-all hover:bg-amber-800/30">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/>
+          </svg>
+          <span id="nav-cart-count" class="hidden rounded-full bg-amber-500 px-1.5 py-0.5 text-[10px] font-bold text-[#0c0a09]">0</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative flex min-h-screen items-center overflow-hidden px-6 pt-24">
+    <div class="pointer-events-none absolute inset-0">
+      <div class="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-amber-600/10 blur-[150px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-red-600/10 blur-[150px]"></div>
+      <div class="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/5 blur-[100px]"></div>
+    </div>
+    <div class="hero-content relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 lg:flex-row">
+      <div class="flex-1 text-center lg:text-left">
+        <div class="hero-badge mb-6 inline-block rounded-full border border-amber-700/30 bg-amber-900/20 px-4 py-1 font-mono text-[11px] text-amber-500 uppercase tracking-[0.2em]">Desde 2015</div>
+        <h1 class="hero-title mb-4 text-5xl font-black leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">{r.name}</h1>
+        <p class="hero-subtitle mb-2 text-xl text-amber-400/70 sm:text-2xl">{r.tagline}</p>
+        <p class="hero-desc mb-8 text-sm text-amber-300/50">{r.slogan}</p>
+        <div class="hero-cta flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+          <a href="#menu" class="group inline-flex items-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-8 py-4 font-mono text-sm font-bold text-amber-400 shadow-lg shadow-amber-900/20 transition-all hover:border-amber-400/60 hover:bg-amber-500/20 hover:shadow-amber-800/30">
+            <span>VER MENU</span>
+            <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href={"https://wa.me/" + r.wa} target="_blank" class="font-mono text-xs text-amber-300/50 underline underline-offset-4 decoration-amber-800/40 transition-colors hover:text-amber-300">Pedir por WhatsApp</a>
+        </div>
+      </div>
+      <div class="hero-image flex-1">
+        <div class="relative mx-auto h-80 w-80 sm:h-96 sm:w-96">
+          <div class="absolute inset-0 animate-pulse rounded-full bg-gradient-to-br from-amber-600/20 via-red-900/10 to-amber-950/30 blur-2xl"></div>
+          <div class="relative flex h-full w-full items-center justify-center rounded-full border-2 border-amber-800/30 bg-gradient-to-br from-amber-900/20 via-amber-950/10 to-[#0c0a09]">
+            <svg class="h-40 w-40 text-amber-600/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.3">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/>
+              <line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="relative px-6 py-32">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-4 text-center font-mono text-[11px] text-amber-400/70 uppercase tracking-[0.2em]">// nuestro menu</div>
+      <h2 class="mb-4 text-center text-4xl font-black tracking-tight sm:text-5xl">SABORES QUE <span class="text-amber-500">ENAMORAN</span></h2>
+      <p class="mb-16 text-center text-sm text-amber-300/50">Hace click en cada plato para agregarlo a tu pedido</p>
+      {menu.map((section, si) => (
+        <div class="menu-section mb-16">
+          <div class="menu-cat mb-8 flex items-center gap-4">
+            <div class="h-px flex-1 bg-gradient-to-r from-amber-900/50 to-transparent"></div>
+            <span class="font-mono text-base font-bold text-amber-400 uppercase tracking-widest">{section.cat}</span>
+            <div class="h-px flex-1 bg-gradient-to-l from-amber-900/50 to-transparent"></div>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {section.items.map((item) => (
+              <button
+                class="menu-item group relative overflow-hidden rounded-xl border border-amber-900/30 bg-[#181512]/60 p-5 text-left transition-all duration-300 hover:border-amber-700/40 hover:bg-[#1f1a16] hover:shadow-lg hover:shadow-amber-900/10"
+                data-name={item.n}
+                data-price={item.p.toFixed(2)}
+              >
+                <div class="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-amber-600/5 transition-all duration-500 group-hover:scale-[3] group-hover:bg-amber-600/10"></div>
+                <div class="relative z-10 flex items-start justify-between gap-4">
+                  <div class="flex-1">
+                    <span class="font-mono text-base font-bold text-amber-100 transition-colors group-hover:text-amber-400">{item.n}</span>
+                    <p class="mt-1 text-xs text-amber-300/60">{item.d}</p>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <div class="text-right">
+                      <div class="font-mono text-sm text-amber-500">$ {item.p.toFixed(2)}</div>
+                      <div class="js-bs-price font-mono text-[10px] text-amber-400/50 hidden">Bs. --</div>
+                    </div>
+                    <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-amber-700/40 bg-amber-900/20 text-sm text-amber-500 transition-all group-hover:border-amber-500/60 group-hover:bg-amber-500/20 group-hover:text-amber-400 group-active:scale-90">+</div>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Cart Floating -->
+  <div id="cart-floating" class="fixed bottom-4 right-4 z-50 hidden w-80 translate-y-4 rounded-xl border border-amber-800/40 bg-[#181512] shadow-2xl shadow-amber-950/50 backdrop-blur-md opacity-0">
+    <div class="flex items-center justify-between border-b border-amber-900/30 px-4 py-3">
+      <div>
+        <h3 class="font-mono text-sm font-bold text-amber-400">TU PEDIDO</h3>
+        <p id="cart-item-count" class="font-mono text-[10px] text-amber-300/50">0 items</p>
+      </div>
+      <button id="close-cart-btn" class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-800/40 text-[10px] text-amber-400/80 transition-all hover:border-amber-600/60 hover:text-amber-400">
+        <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="cart-items" class="max-h-48 overflow-y-auto px-4 py-3">
+      <div id="cart-empty" class="flex flex-col items-center justify-center py-6 text-center">
+        <p class="font-mono text-xs text-amber-300/50">Tu carrito esta vacio</p>
+        <p class="mt-1 font-mono text-[10px] text-amber-300/40">Agrega platos del menu</p>
+      </div>
+      <div id="cart-list" class="hidden space-y-2"></div>
+    </div>
+    <div id="cart-footer" class="hidden border-t border-amber-900/30 px-4 py-3">
+      <div class="mb-2 space-y-1">
+        <div class="flex items-center justify-between font-mono text-xs"><span class="text-amber-300/80">Subtotal</span><span id="cart-subtotal" class="text-amber-100">$0.00</span></div>
+        <div id="cart-tax-row" class="flex items-center justify-between font-mono text-xs"><span class="text-amber-300/80">IVA (16%)</span><span id="cart-tax" class="text-amber-200/80">$0.00</span></div>
+        <div class="border-t border-amber-900/20 pt-1"></div>
+        <div class="flex items-center justify-between font-mono text-sm font-bold"><span class="text-amber-400">Total</span><span id="cart-total" class="text-amber-400">$0.00</span></div>
+      </div>
+
+      <!-- Currency selector -->
+      <div class="mb-2 flex gap-1">
+        <label class="js-curr-opt flex-1 cursor-pointer rounded border border-amber-700/40 px-2 py-1.5 text-center font-mono text-xs text-amber-300/70 transition-all hover:border-amber-500/60 has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-400" data-curr="usd">
+          <input type="radio" name="currency" value="usd" class="hidden"> Divisas
+        </label>
+        <label class="js-curr-opt flex-1 cursor-pointer rounded border border-amber-700/40 px-2 py-1.5 text-center font-mono text-xs text-amber-300/70 transition-all hover:border-amber-500/60 has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-400" data-curr="bs">
+          <input type="radio" name="currency" value="bs" class="hidden"> Bs
+        </label>
+      </div>
+
+      <!-- Payment methods -->
+      <div id="pay-methods" class="mb-2 flex flex-wrap gap-1"></div>
+
+      <a id="cart-wa-btn" href={"https://wa.me/" + r.wa + "?text="} target="_blank" class="flex w-full items-center justify-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-2.5 font-mono text-xs font-bold text-amber-400 transition-all hover:bg-amber-500/20">
+        <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed top-24 right-6 z-50 hidden translate-x-full rounded-lg border border-amber-800/40 bg-[#181512] px-5 py-3 shadow-2xl shadow-amber-950/30 backdrop-blur-md">
+    <div class="flex items-center gap-3">
+      <svg class="h-5 w-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div><p id="toast-msg" class="font-mono text-sm text-amber-100">Item agregado</p></div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <section id="resenas" class="border-t border-amber-900/20 px-6 py-32">
+    <div class="mx-auto max-w-4xl">
+      <div class="mb-4 text-center font-mono text-[11px] text-amber-400/70 uppercase tracking-[0.2em]">// resenas</div>
+      <h2 class="mb-16 text-center text-4xl font-black tracking-tight sm:text-5xl">LO QUE DICEN <span class="text-amber-500">NUESTROS COMENSALES</span></h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {[0,1,2].map((i) => {
+          const reviews = [
+            { name: "Maria G.", text: "El pabellon es el mejor que he probado fuera de Venezuela. Super recomendado.", rating: 5 },
+            { name: "Carlos L.", text: "La parrilla mixta es espectacular. Volvemos cada semana.", rating: 5 },
+            { name: "Ana R.", text: "Los tequenos son imperdibles. El servicio excelente.", rating: 4 },
+          ]
+          const rev = reviews[i]
+          return (
+            <div class="review-card group rounded-xl border border-amber-900/30 bg-[#181512]/60 p-6 transition-all duration-300 hover:border-amber-700/40 hover:bg-[#1f1a16]">
+              <div class="mb-4 flex gap-1">
+                {Array.from({ length: 5 }, (_, j) => (
+                  <svg key={j} class={"h-4 w-4 transition-all duration-300 " + (j < rev.rating ? "text-amber-500" : "text-amber-700/40")} fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
+                ))}
+              </div>
+              <p class="mb-4 text-sm leading-relaxed text-amber-200/80">{rev.text}</p>
+              <span class="font-mono text-xs text-amber-300/50">-- {rev.name}</span>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-amber-900/20 px-6 py-16">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-10 md:grid-cols-3">
+        <div>
+          <span class="font-mono text-lg font-bold tracking-wider text-amber-500">FOGON</span>
+          <p class="mt-3 text-xs text-amber-300/50 leading-relaxed">{r.slogan}</p>
+        </div>
+        <div>
+          <h4 class="mb-4 font-mono text-sm font-bold text-amber-400 uppercase tracking-widest">Horarios</h4>
+          <p class="text-xs text-amber-300/60">{r.schedule}</p>
+          <p class="mt-2 text-xs text-amber-300/60">{r.address}</p>
+        </div>
+        <div>
+          <h4 class="mb-4 font-mono text-sm font-bold text-amber-400 uppercase tracking-widest">Redes</h4>
+          <div class="flex gap-3">
+            <a href={"https://wa.me/" + r.wa} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="WhatsApp">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href={"https://instagram.com/" + r.ig.replace('@','')} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="Instagram">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href={"https://facebook.com/" + r.fb} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="Facebook">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+            </a>
+            <a href={"https://x.com/" + r.x.replace('@','')} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="X">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 border-t border-amber-900/20 pt-8 text-center space-y-2">
+        <p class="font-mono text-[10px] text-amber-300/30">Demo - Cryfield.dev</p>
+        <p class="font-mono text-[10px] text-amber-400/50">Hecho por <a href="https://cryfield.dev" target="_blank" class="text-amber-500 hover:text-amber-400 transition-colors">Cryfield.dev</a> - Web para tu negocio</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="/plantillas" class="fixed top-20 left-4 z-40 rounded-lg border border-amber-800/30 bg-[#181512]/80 px-3 py-2 font-mono text-[11px] text-amber-400/80 backdrop-blur-sm transition-all hover:text-amber-400">&lt;- Volver</a>
+</section>
+
+<style>
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .menu-item { animation: fadeInUp 0.4s both; }
+  .menu-item:nth-child(1) { animation-delay: 0.05s; }
+  .menu-item:nth-child(2) { animation-delay: 0.1s; }
+  .menu-item:nth-child(3) { animation-delay: 0.15s; }
+  .menu-item:nth-child(4) { animation-delay: 0.2s; }
+  .review-card { animation: fadeIn 0.4s both; }
+  .review-card:nth-child(1) { animation-delay: 0.05s; }
+  .review-card:nth-child(2) { animation-delay: 0.1s; }
+  .review-card:nth-child(3) { animation-delay: 0.15s; }
+</style>
+
+<script>
+  import gsap from 'gsap'
+
+  // Config (must match frontmatter config above)
+  const BS_RATE = 52.50       // 0 = auto from API fallback
+  const DEFAULT_CURRENCY = 'usd'
+  const IVA_ON = true
+  const PAY_METHODS = {
+    usd: ['Zelle', 'Efectivo USD', 'USDT', 'PayPal'],
+    bs: ['Pago movil', 'Transferencia'],
+  }
+
+  const state = {
+    items: [],
+    apiRate: null,             // fallback from API if BS_RATE is 0
+    currency: DEFAULT_CURRENCY,
+    payment: null,
+  }
+
+  // --- API (rate fallback if BS_RATE is 0) ---
+  async function fetchRate() {
+    try {
+      const res = await fetch('https://ve.dolarapi.com/v1/dolares/oficial')
+      const data = await res.json()
+      state.apiRate = data.promedio
+    } catch (e) {
+      console.warn('Failed to fetch rate')
+    }
+  }
+
+  function applyRateToMenu() {
+    const rate = state.apiRate || (BS_RATE > 0 ? BS_RATE : 0)
+    document.querySelectorAll('.menu-item').forEach(btn => {
+      const priceUsd = parseFloat(btn.dataset.price)
+      const bsPriceEl = btn.querySelector('.js-bs-price')
+      if (bsPriceEl && rate > 0) {
+        const bs = priceUsd * rate
+        bsPriceEl.textContent = 'Bs. ' + bs.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+        bsPriceEl.classList.remove('hidden')
+      }
+    })
+  }
+
+  // --- Helpers ---
+  function getRate() {
+    if (state.currency === 'usd') return 1
+    return state.apiRate || (BS_RATE > 0 ? BS_RATE : 1)
+  }
+
+  function getSymbol() {
+    return state.currency === 'usd' ? '$' : 'Bs.'
+  }
+
+  function convert(usdPrice) {
+    return usdPrice * getRate()
+  }
+
+  function formatPrice(val) {
+    if (state.currency === 'usd') return '$ ' + val.toFixed(2)
+    return 'Bs. ' + val.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  }
+
+  // --- GSAP hero ---
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .from('.hero-badge', { y: 20, opacity: 0, duration: 0.5 })
+    .from('.hero-title', { y: 40, opacity: 0, duration: 0.7 }, '-=0.2')
+    .from('.hero-subtitle', { y: 30, opacity: 0, duration: 0.6 }, '-=0.4')
+    .from('.hero-desc', { y: 20, opacity: 0, duration: 0.5 }, '-=0.3')
+    .from('.hero-cta', { y: 20, opacity: 0, duration: 0.5 }, '-=0.2')
+    .from('.hero-image', { scale: 0.8, opacity: 0, duration: 0.8 }, '-=0.6')
+
+  // --- DOM refs ---
+  const cartFloating = document.getElementById('cart-floating')
+  const openBtn = document.getElementById('open-cart-btn')
+  const closeBtn = document.getElementById('close-cart-btn')
+  const cartEmpty = document.getElementById('cart-empty')
+  const cartList = document.getElementById('cart-list')
+  const cartFooter = document.getElementById('cart-footer')
+  const cartSubtotal = document.getElementById('cart-subtotal')
+  const cartTax = document.getElementById('cart-tax')
+  const cartTaxRow = document.getElementById('cart-tax-row')
+  const cartTotal = document.getElementById('cart-total')
+  const cartItemCount = document.getElementById('cart-item-count')
+  const navCartCount = document.getElementById('nav-cart-count')
+  const toast = document.getElementById('toast')
+  const toastMsg = document.getElementById('toast-msg')
+  const cartWaBtn = document.getElementById('cart-wa-btn')
+  const payMethodsEl = document.getElementById('pay-methods')
+
+  let toastTl = null
+  let cartOpen = false
+
+  function openCart() {
+    cartOpen = true
+    cartFloating.classList.remove('hidden')
+    gsap.to(cartFloating, { y: 0, opacity: 1, duration: 0.3, ease: 'power3.out', overwrite: true })
+  }
+
+  function closeCart() {
+    cartOpen = false
+    gsap.to(cartFloating, {
+      y: 16, opacity: 0, duration: 0.2, ease: 'power2.in', overwrite: true,
+      onComplete: () => { cartFloating.classList.add('hidden') },
+    })
+  }
+
+  function toggleCart() { cartOpen ? closeCart() : openCart() }
+
+  openBtn.addEventListener('click', toggleCart)
+  closeBtn.addEventListener('click', closeCart)
+
+  function showToast(msg) {
+    toastMsg.textContent = msg
+    if (toastTl) toastTl.kill()
+    toastTl = gsap.timeline()
+    toastTl
+      .set(toast, { clearProps: 'all' })
+      .to(toast, { x: 0, opacity: 1, duration: 0.3, ease: 'power2.out' })
+      .to(toast, { x: 0, opacity: 1, duration: 1.5 })
+      .to(toast, { x: '100%', opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => { toast.classList.add('hidden') } })
+  }
+
+  // --- Currency selector ---
+  document.querySelectorAll('.js-curr-opt').forEach(label => {
+    const radio = label.querySelector('input')
+    if (radio.value === state.currency) radio.checked = true
+    radio.addEventListener('change', () => {
+      if (!radio.checked) return
+      state.currency = radio.value
+      state.payment = null
+      renderPayMethods()
+      renderCart()
+    })
+  })
+
+  // --- Payment methods ---
+  function renderPayMethods() {
+    const methods = PAY_METHODS[state.currency] || []
+    payMethodsEl.innerHTML = methods.map(m => `
+      <label class="js-pay-opt cursor-pointer rounded border border-amber-700/40 px-2.5 py-1 font-mono text-[10px] text-amber-300/70 transition-all hover:border-amber-500/60 has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-400">
+        <input type="radio" name="payment" value="${m}" class="hidden"> ${m}
+      </label>
+    `).join('')
+    payMethodsEl.querySelectorAll('.js-pay-opt').forEach(label => {
+      const radio = label.querySelector('input')
+      if (state.payment && radio.value === state.payment) radio.checked = true
+      radio.addEventListener('change', () => {
+        if (!radio.checked) return
+        state.payment = radio.value
+      })
+    })
+  }
+
+  // --- Render cart ---
+  function renderCart() {
+    const count = state.items.reduce((s, i) => s + i.qty, 0)
+    const hasItems = count > 0
+
+    navCartCount.textContent = count
+    navCartCount.classList.toggle('hidden', !hasItems)
+    cartItemCount.textContent = hasItems ? count + ' item' + (count > 1 ? 's' : '') : '0 items'
+    cartEmpty.classList.toggle('hidden', hasItems)
+    cartList.classList.toggle('hidden', !hasItems)
+    cartFooter.classList.toggle('hidden', !hasItems)
+
+    if (!hasItems) return
+
+    cartList.innerHTML = state.items.map((item, i) => {
+      const lineTotal = convert(item.price * item.qty)
+      const rate = getRate()
+      return `
+      <div class="cart-item flex items-center gap-2 rounded-lg border border-amber-800/20 bg-[#181512]/60 px-3 py-2">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-amber-100 truncate">${item.name}</span>
+            <button class="js-remove-item text-amber-600/50 hover:text-amber-400 transition-colors flex-shrink-0" data-index="${i}">
+              <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="mt-1 flex items-center gap-2">
+            <button class="js-qty-down flex h-5 w-5 items-center justify-center rounded-full border border-amber-700/40 text-[10px] text-amber-400/80 transition-all hover:border-amber-600/60 hover:text-amber-400" data-index="${i}">-</button>
+            <span class="font-mono text-xs text-amber-400 min-w-[1rem] text-center font-bold">${item.qty}</span>
+            <button class="js-qty-up flex h-5 w-5 items-center justify-center rounded-full border border-amber-700/40 text-[10px] text-amber-400/80 transition-all hover:border-amber-600/60 hover:text-amber-400" data-index="${i}">+</button>
+            <span class="ml-auto font-mono text-sm text-amber-500 font-bold">${formatPrice(lineTotal)}</span>
+          </div>
+          <div class="mt-0.5 font-mono text-[10px] text-amber-400/60">
+            ${state.currency === 'usd' ? (rate > 0 ? 'Bs. ' + (item.price * item.qty * rate).toLocaleString('es-VE', { minimumFractionDigits: 2 }) : '') : '$ ' + (item.price * item.qty).toFixed(2)}
+          </div>
+        </div>
+      </div>`
+    }).join('')
+
+    const rawSubtotal = state.items.reduce((s, i) => s + i.price * i.qty, 0)
+    const subtotal = convert(rawSubtotal)
+    const tax = subtotal * 0.16
+    const total = IVA_ON ? subtotal + tax : subtotal
+
+    cartSubtotal.textContent = formatPrice(subtotal)
+    cartTax.textContent = formatPrice(tax)
+    cartTaxRow.classList.toggle('hidden', !IVA_ON)
+    cartTotal.textContent = formatPrice(total)
+
+    // WhatsApp message (clean, no prices)
+    const orderLines = state.items.map(i => '- ' + i.name + ' x' + i.qty)
+    const msgParts = ['Hola! Quiero hacer un pedido:', '']
+    msgParts.push(...orderLines)
+    msgParts.push('')
+    msgParts.push('Pago en: ' + (state.currency === 'usd' ? 'Divisas (USD)' : 'Bolivares (Bs)'))
+    if (state.payment) msgParts.push('Metodo de pago: ' + state.payment)
+    const msg = msgParts.join('%0A')
+    cartWaBtn.href = 'https://wa.me/584200000000?text=' + msg
+
+    // Re-bind cart events
+    document.querySelectorAll('.js-qty-down').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.index)
+        if (state.items[idx].qty > 1) state.items[idx].qty--
+        else state.items.splice(idx, 1)
+        renderCart()
+      })
+    })
+    document.querySelectorAll('.js-qty-up').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.index)
+        state.items[idx].qty++
+        renderCart()
+      })
+    })
+    document.querySelectorAll('.js-remove-item').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.index)
+        state.items.splice(idx, 1)
+        renderCart()
+      })
+    })
+  }
+
+  // --- Menu add buttons ---
+  document.querySelectorAll('.menu-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name
+      const price = parseFloat(btn.dataset.price)
+      const existing = state.items.find(i => i.name === name)
+      if (existing) existing.qty++
+      else state.items.push({ name, price, qty: 1 })
+      const wasEmpty = state.items.length === 1 && state.items[0].qty === 1
+      renderCart()
+      if (wasEmpty) openCart()
+      showToast('Agregado: ' + name)
+      const addIcon = btn.querySelector('.flex-shrink-0')
+      if (addIcon) gsap.from(addIcon, { scale: 1.4, duration: 0.2, ease: 'power2.out' })
+    })
+  })
+
+  // --- Init ---
+  fetchRate().finally(() => {
+    applyRateToMenu()
+    renderCart()
+  })
+  renderPayMethods()
+</script>

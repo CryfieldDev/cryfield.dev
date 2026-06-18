@@ -18,6 +18,7 @@
     "@tailwindcss/vite": "^4.0.17",
     "astro": "^6.4.7",
     "clsx": "^2.1.1",
+    "gsap": "^3.15.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwind-merge": "^3.6.0",

@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const categories = [
+  { slug: 'gastronomia', name: 'Gastronomia', desc: 'Restaurante con menu digital y pedidos por WhatsApp', icon: 'Food', color: 'from-amber-600 to-red-600' },
+  { slug: 'gimnasios', name: 'Gimnasios', desc: 'Landing con planes y agenda de clase gratis', icon: 'Gym', color: 'from-orange-500 to-red-500' },
+  { slug: 'consultorios', name: 'Consultorios', desc: 'Perfil profesional con solicitud de citas', icon: 'Health', color: 'from-sky-600 to-blue-700' },
+  { slug: 'tiendas', name: 'Tiendas', desc: 'Catalogo de productos con carrito y WhatsApp', icon: 'Shop', color: 'from-violet-600 to-purple-700' },
+  { slug: 'tecnologia', name: 'Tecnologia', desc: 'Servicios tecnicos y reparaciones', icon: 'Tech', color: 'from-cyan-600 to-teal-600' },
+  { slug: 'belleza', name: 'Belleza', desc: 'Salon y barberia con galeria de trabajos', icon: 'Beauty', color: 'from-pink-500 to-rose-600' },
+  { slug: 'inmobiliarias', name: 'Inmobiliarias', desc: 'Galeria de propiedades con filtros', icon: 'Home', color: 'from-emerald-600 to-teal-600' },
+  { slug: 'educacion', name: 'Educacion', desc: 'Cursos y clases con inscripcion online', icon: 'Books', color: 'from-indigo-600 to-blue-600' },
+  { slug: 'servicios', name: 'Servicios', desc: 'Talleres y oficios con presupuesto online', icon: 'Tools', color: 'from-stone-600 to-zinc-700' },
+]
+---
+
+<Layout title="Plantillas - Cryfield.dev" description="Explora las plantillas web para cada rubro">
+  <main class="min-h-screen bg-cry-darkest px-6 py-24 text-cry-text">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-4 text-center font-mono text-xs text-cry-muted/60">// plantillas</div>
+      <h1 class="mb-4 text-center text-3xl font-black tracking-tight sm:text-4xl">
+        DEMOS POR <span class="text-cry-lime">RUBRO</span>
+      </h1>
+      <p class="mb-14 text-center text-sm text-cry-muted">
+        Selecciona un rubro para ver el demo funcional de su landing page
+      </p>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {categories.map((cat) => (
+          <a
+            href={`/plantillas/${cat.slug}`}
+            class="group relative overflow-hidden rounded-lg border border-cry-border/30 bg-cry-card/30 p-6 transition-all hover:border-cry-lime/40 hover:bg-cry-card/50"
+          >
+            <div class="mb-2 font-mono text-sm font-bold text-cry-lime">{cat.icon}</div>
+            <h2 class="mb-2 font-mono text-lg font-bold text-cry-text group-hover:text-cry-lime transition-colors">{cat.name}</h2>
+            <p class="text-sm text-cry-muted/70">{cat.desc}</p>
+            <div class="mt-4 font-mono text-xs text-cry-lime/60 group-hover:text-cry-lime transition-colors">
+              Ver demo &gt;
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>
