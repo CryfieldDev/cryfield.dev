@@ -1,0 +1,965 @@
+---
+const r = {
+  name: "Ruptura Fit",
+  tagline: "El gimnasio donde el esfuerzo se convierte en resultado",
+  desc: "Entrenamiento funcional, pesas, crossfit y clases grupales. Sin contratos, sin excusas.",
+  wa: "584200000000",
+  address: "Av. Principal de La Castellana, Centro Comercial Plaza, Nivel 2",
+  schedule: "Lun-Sab: 6:00 - 22:00 | Dom: 8:00 - 14:00",
+  ig: "@rupturafit",
+  fb: "rupturafit",
+  x: "@rupturafit",
+}
+
+const unsplash = (id, w=600) =>
+  `https://images.unsplash.com/${id}?w=${w}&auto=format&fm=webp`
+
+const plans = [
+  {
+    id: 'mensual',
+    name: 'Mensual',
+    monthly: 30,
+    quarterly: null,
+    annual: null,
+    badge: null,
+    perMonth: 30,
+    img: unsplash("photo-1534438327276-14e5300c3a48"),
+    features: [
+      'Acceso completo al gimnasio',
+      'Clases grupales ilimitadas',
+      'Vestidores con duchas',
+      'Sin permanencia',
+    ],
+  },
+  {
+    id: 'trimestral',
+    name: 'Trimestral',
+    monthly: null,
+    quarterly: 75,
+    annual: null,
+    badge: 'Recomendado',
+    perMonth: 25,
+    img: unsplash("photo-1517836357463-d25dfeac3438"),
+    features: [
+      'Todo lo del plan Mensual',
+      'Evaluacion fisica inicial',
+      'Acceso 24h los 7 dias',
+      'Ahorras $15 vs Mensual',
+    ],
+  },
+  {
+    id: 'anual',
+    name: 'Anual',
+    monthly: null,
+    quarterly: null,
+    annual: 120,
+    badge: 'Mejor valor',
+    perMonth: 10,
+    img: unsplash("photo-1571019614242-c5c5dee9f50b"),
+    features: [
+      'Todo lo del plan Trimestral',
+      'Sesion con nutricionista',
+      'Seguimiento personalizado',
+      'Ahorras $240 vs Mensual',
+    ],
+  },
+]
+
+const schedule = [
+  { day: 'Lun', classes: [
+    { time: '7:00', name: 'Crossfit' }, { time: '9:00', name: 'Yoga' },
+    { time: '10:00', name: 'Spinning' }, { time: '17:00', name: 'Funcional' },
+    { time: '18:30', name: 'Boxeo' }, { time: '20:00', name: 'Zumba' },
+  ]},
+  { day: 'Mar', classes: [
+    { time: '7:00', name: 'Funcional' }, { time: '9:00', name: 'Pilates' },
+    { time: '10:00', name: 'Crossfit' }, { time: '17:00', name: 'Boxeo' },
+    { time: '18:30', name: 'Spinning' }, { time: '20:00', name: 'Yoga' },
+  ]},
+  { day: 'Mie', classes: [
+    { time: '7:00', name: 'Spinning' }, { time: '9:00', name: 'Crossfit' },
+    { time: '10:00', name: 'Funcional' }, { time: '17:00', name: 'Zumba' },
+    { time: '18:30', name: 'Pilates' }, { time: '20:00', name: 'Boxeo' },
+  ]},
+  { day: 'Jue', classes: [
+    { time: '7:00', name: 'Yoga' }, { time: '9:00', name: 'Funcional' },
+    { time: '10:00', name: 'Boxeo' }, { time: '17:00', name: 'Crossfit' },
+    { time: '18:30', name: 'Zumba' }, { time: '20:00', name: 'Spinning' },
+  ]},
+  { day: 'Vie', classes: [
+    { time: '7:00', name: 'Crossfit' }, { time: '9:00', name: 'Spinning' },
+    { time: '10:00', name: 'Yoga' }, { time: '17:00', name: 'Funcional' },
+    { time: '18:30', name: 'Boxeo' }, { time: '20:00', name: 'Pilates' },
+  ]},
+  { day: 'Sab', classes: [
+    { time: '8:00', name: 'Crossfit' }, { time: '9:30', name: 'Funcional' },
+    { time: '11:00', name: 'Yoga' }, { time: '12:00', name: 'Zumba' },
+  ]},
+]
+---
+
+<section id="gym-content" class="min-h-screen bg-[#070605] text-[#fff7ed] font-sans overflow-x-hidden">
+  <a href="/plantillas" class="fixed top-20 left-4 z-40 rounded-lg border border-orange-700/40 bg-[#070605]/80 px-3 py-2 font-mono text-xs text-orange-400/70 backdrop-blur-sm transition-all hover:text-orange-400 hover:border-orange-500/60">&lt;- Volver</a>
+
+  <!-- Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-orange-900/20 bg-[#070605]/90 backdrop-blur-lg">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+      <a href="#" class="flex items-center gap-2 font-mono text-lg font-bold tracking-tight text-orange-500">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        RUPTURA
+      </a>
+      <div class="flex items-center gap-6">
+        <a href="#planes" class="hidden text-sm text-orange-300/60 transition-colors hover:text-orange-400 sm:block">Planes</a>
+        <a href="#clases" class="hidden text-sm text-orange-300/60 transition-colors hover:text-orange-400 sm:block">Clases</a>
+        <a href="#imc" class="hidden text-sm text-orange-300/60 transition-colors hover:text-orange-400 sm:block">Tu IMC</a>
+        <a href="#entrenadores" class="hidden text-sm text-orange-300/60 transition-colors hover:text-orange-400 sm:block">Staff</a>
+        <a href={"https://wa.me/" + r.wa + "?text=Hola!%20Quiero%20entrenar%20en%20Ruptura%20Fit"} target="_blank" class="magnetic-btn rounded-lg border border-orange-600/30 bg-orange-500/10 px-4 py-2 text-xs font-bold text-orange-400 transition-all hover:bg-orange-500/20">QUIERO ENTRENAR</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative flex min-h-screen items-center overflow-hidden px-6 pt-24">
+    <!-- Animated gradient orbs -->
+    <div class="pointer-events-none absolute inset-0">
+      <div class="hero-orb absolute top-1/4 left-1/4 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-orange-600/20 via-red-600/10 to-transparent blur-[150px]"></div>
+      <div class="hero-orb absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-tl from-red-600/15 via-orange-600/5 to-transparent blur-[120px]"></div>
+    </div>
+
+    <!-- Grid pattern -->
+    <div class="pointer-events-none absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(234,88,12,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(234,88,12,0.4) 1px,transparent 1px);background-size:60px 60px"></div>
+
+    <div class="hero-content relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 lg:flex-row">
+      <div class="flex-1 text-center lg:text-left">
+        <div class="hero-badge mb-6 inline-flex items-center gap-2 rounded-full border border-orange-700/30 bg-orange-900/20 px-4 py-1.5 font-mono text-[11px] text-orange-500 uppercase tracking-[0.2em] backdrop-blur-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-400 opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-orange-500"></span>
+          </span>
+          Abierto ahora
+        </div>
+        <h1 class="hero-title mb-6 text-6xl font-black leading-[0.85] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
+          <span class="block overflow-hidden"><span class="hero-line block bg-gradient-to-r from-orange-400 via-orange-500 to-red-500 bg-clip-text text-transparent">ROMPE</span></span>
+          <span class="block overflow-hidden"><span class="hero-line block text-orange-100">TUS</span></span>
+          <span class="block overflow-hidden"><span class="hero-line block text-orange-100">LIMITES</span></span>
+        </h1>
+        <p class="hero-subtitle mb-4 max-w-xl text-lg text-orange-300/60 sm:text-xl">{r.tagline}</p>
+        <p class="hero-desc mb-10 max-w-md text-sm text-orange-300/40">{r.desc}</p>
+        <div class="hero-cta flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+          <a href="#planes" class="magnetic-btn group inline-flex items-center gap-3 rounded-xl bg-gradient-to-r from-orange-600 to-red-600 px-10 py-4 font-mono text-sm font-bold text-white shadow-lg shadow-orange-900/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-800/40 hover:-translate-y-0.5">
+            <span>VER PLANES</span>
+            <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href={"https://wa.me/" + r.wa + "?text=Quiero%20mi%20clase%20de%20prueba%20gratis"} target="_blank" class="text-sm text-orange-300/60 underline underline-offset-8 decoration-orange-800/30 transition-colors hover:text-orange-300 hover:decoration-orange-500/50">Clase de prueba gratis</a>
+        </div>
+      </div>
+      <div class="hero-visual flex-1 flex justify-center lg:justify-end">
+        <!-- Animated SVG Dumbbell -->
+        <div class="relative h-80 w-80 sm:h-96 sm:w-96">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-orange-600/10 to-red-600/5 blur-3xl"></div>
+          <svg class="hero-svg relative h-full w-full" viewBox="0 0 400 400" fill="none">
+            <!-- Outer ring -->
+            <circle cx="200" cy="200" r="180" stroke="url(#grad1)" stroke-width="0.5" opacity="0.3" class="hero-ring" />
+            <circle cx="200" cy="200" r="150" stroke="url(#grad1)" stroke-width="0.5" opacity="0.2" class="hero-ring" />
+            <!-- Dumbbell shape -->
+            <g class="hero-dumbbell" transform="translate(200,200)">
+              <rect x="-100" y="-12" width="60" height="24" rx="4" fill="url(#grad1)" opacity="0.8" />
+              <rect x="40" y="-12" width="60" height="24" rx="4" fill="url(#grad1)" opacity="0.8" />
+              <rect x="-40" y="-6" width="80" height="12" rx="6" fill="url(#grad1)" opacity="0.6" />
+              <rect x="-120" y="-20" width="20" height="40" rx="6" fill="url(#grad2)" opacity="0.9" />
+              <rect x="100" y="-20" width="20" height="40" rx="6" fill="url(#grad2)" opacity="0.9" />
+            </g>
+            <!-- Orbiting dots -->
+            <circle class="orbit-dot" cx="200" cy="20" r="4" fill="#ea580c" opacity="0.6" />
+            <circle class="orbit-dot" cx="380" cy="200" r="3" fill="#ef4444" opacity="0.5" />
+            <circle class="orbit-dot" cx="200" cy="380" r="4" fill="#f97316" opacity="0.6" />
+            <circle class="orbit-dot" cx="20" cy="200" r="3" fill="#dc2626" opacity="0.5" />
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f97316" />
+                <stop offset="100%" stop-color="#ef4444" />
+              </linearGradient>
+              <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#ea580c" />
+                <stop offset="100%" stop-color="#dc2626" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+      <span class="font-mono text-[10px] text-orange-400/60 uppercase tracking-widest">Scroll</span>
+      <div class="h-8 w-5 rounded-full border border-orange-500/30 p-1">
+        <div class="scroll-dot h-1.5 w-1.5 rounded-full bg-orange-500/60"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="border-t border-orange-900/15 px-6 py-20">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+        {[
+          { value: 500, suffix: '+', label: 'Alumnos activos' },
+          { value: 10, suffix: '+', label: 'Años de experiencia' },
+          { value: 15, suffix: '', label: 'Instructores certificados' },
+          { value: 4.9, suffix: '/5', label: 'Rating promedio' },
+        ].map((stat, i) => (
+          <div class="stat-card group relative overflow-hidden rounded-2xl border border-orange-900/20 bg-gradient-to-b from-[#181512]/60 to-[#0f0d0a]/60 p-6 text-center transition-all duration-500 hover:border-orange-600/30 hover:shadow-lg hover:shadow-orange-900/10">
+            <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            <div class="js-stat font-mono text-3xl font-black text-orange-100 sm:text-4xl relative" data-target={stat.value} data-suffix={stat.suffix}>0{stat.suffix}</div>
+            <div class="mt-2 text-xs text-orange-400/60 relative">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Animated Divider -->
+  <div class="relative h-px w-full overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
+    <div class="divider-glow absolute inset-0 bg-gradient-to-r from-transparent via-orange-400 to-transparent opacity-0 blur-sm"></div>
+  </div>
+
+  <!-- Planes -->
+  <section id="planes" class="px-6 py-32">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-4 text-center font-mono text-[11px] text-orange-500/70 uppercase tracking-[0.2em]">// membresia</div>
+      <h2 class="mb-4 text-center text-5xl font-black tracking-tight sm:text-6xl"><span class="scramble-text" data-text="ELEGI TU">ELEGI TU</span> <span class="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">PLAN</span></h2>
+      <p class="mb-6 text-center text-sm text-orange-300/70">Sin contratos, pago unico, acceso inmediato</p>
+
+      <!-- Billing toggle -->
+      <div class="mb-14 flex justify-center">
+        <div id="billing-toggle" class="inline-flex rounded-xl border border-orange-800/30 bg-[#181512]/80 p-1 backdrop-blur-sm">
+          <button class="js-billing-btn rounded-lg px-6 py-2.5 font-mono text-xs font-bold text-orange-300/50 transition-all duration-300" data-period="one-time" data-on="true" aria-label="Pago único">Pago unico</button>
+          <button class="js-billing-btn rounded-lg px-6 py-2.5 font-mono text-xs font-bold text-orange-300/50 transition-all duration-300" data-period="per-month" aria-label="Por mes">Por mes</button>
+        </div>
+      </div>
+
+      <div class="mb-12 grid gap-6 md:grid-cols-3">
+        {plans.map((plan) => (
+          <button
+            class="plan-card js-plan-card group relative overflow-hidden rounded-2xl border border-orange-900/25 bg-gradient-to-b from-[#181512]/80 to-[#0f0d0a]/80 p-0 text-left transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-900/20"
+            data-plan={plan.id}
+            data-price-onetime={(plan.monthly || plan.quarterly || plan.annual).toFixed(2)}
+            data-price-permonth={plan.perMonth}
+            data-img={plan.img}
+            data-name={plan.name}
+            data-features={JSON.stringify(plan.features)}
+            data-badge={plan.badge || ''}
+          >
+            {plan.badge && (
+              <div class="absolute -top-0.5 left-0 right-0 z-10 h-1 bg-gradient-to-r from-orange-500 to-red-500"></div>
+            )}
+            <!-- Image -->
+            <div class="relative h-48 overflow-hidden">
+              <img src={plan.img} alt={plan.name} loading="lazy" width="400" height="192" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.style.display='none'" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0f0d0a] via-[#0f0d0a]/60 to-transparent"></div>
+              {plan.badge && (
+                <div class="absolute top-4 right-4 rounded-full bg-gradient-to-r from-orange-600 to-red-600 px-3 py-1 font-mono text-[10px] font-bold text-white uppercase tracking-wider shadow-lg">{plan.badge}</div>
+              )}
+            </div>
+            <!-- Content -->
+            <div class="p-7">
+              <div class="mb-1 font-mono text-xs font-bold text-orange-500/80 uppercase tracking-widest">{plan.name}</div>
+              <div class="mb-1 flex items-baseline gap-1">
+                <span class="js-plan-price font-mono text-5xl font-black text-orange-100">${(plan.monthly || plan.quarterly || plan.annual).toFixed(2)}</span>
+              </div>
+              <div class="mb-6 font-mono text-[11px] text-orange-400/50 js-plan-period">Pago unico</div>
+              <ul class="mb-6 space-y-3">
+                {plan.features.map((f) => (
+                  <li class="flex items-start gap-3 text-sm">
+                    <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+                    <span class="text-orange-200/60">{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <div class="w-full rounded-xl border border-orange-700/30 py-3 text-center font-mono text-xs font-bold text-orange-400 transition-all duration-300 group-hover:border-orange-500/50 group-hover:bg-orange-500/10 group-hover:text-orange-300">
+                VER DETALLES
+              </div>
+            </div>
+            <!-- Gradient border effect on hover -->
+            <div class="pointer-events-none absolute inset-0 rounded-2xl border border-transparent transition-all duration-500 group-hover:border-orange-500/20"></div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Purchase row -->
+      <div class="mx-auto max-w-2xl overflow-hidden rounded-2xl border border-orange-900/20 bg-gradient-to-b from-[#181512]/60 to-[#0f0d0a]/60">
+        <div class="h-px bg-gradient-to-r from-transparent via-orange-500/30 to-transparent"></div>
+        <div class="flex flex-wrap items-center justify-center gap-4 p-6">
+          <div id="currency-switch" class="relative flex cursor-pointer rounded-lg border border-orange-800/30 bg-[#181512]/60 p-0.5 select-none overflow-hidden">
+            <div id="curr-slider" class="absolute top-0.5 bottom-0.5 w-1/2 rounded-md bg-orange-500/15 shadow-sm transition-transform duration-200 ease-out"></div>
+            <span class="relative z-10 flex-1 px-4 py-2 text-center font-mono text-xs font-bold" data-curr="usd">$ USD</span>
+            <span class="relative z-10 flex-1 px-4 py-2 text-center font-mono text-xs font-bold" data-curr="bs">Bs.</span>
+          </div>
+          <div id="pay-methods" class="flex flex-nowrap gap-1 overflow-x-auto"></div>
+          <button id="plan-cta" class="magnetic-btn rounded-xl bg-gradient-to-r from-orange-600 to-red-600 px-8 py-3 font-mono text-sm font-bold text-white shadow-lg shadow-orange-900/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-800/40 hover:-translate-y-0.5" aria-label="Inscribirme ahora al plan seleccionado">
+            INSCRIBIRME AHORA
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/70 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Detalle del plan">
+    <div class="modal-card mx-4 w-full max-w-lg overflow-hidden rounded-3xl border border-orange-900/30 bg-[#0f0d0a] shadow-2xl shadow-black/60">
+      <div class="relative h-56 sm:h-64">
+        <img id="modal-img" src="" alt="" class="h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0d0a] via-[#0f0d0a]/40 to-transparent"></div>
+        <button id="modal-close" class="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-all duration-300 hover:bg-black/60 hover:scale-110">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="px-7 py-6">
+        <div class="mb-1 font-mono text-xs font-bold text-orange-500 uppercase tracking-widest" id="modal-badge"></div>
+        <h3 id="modal-name" class="font-mono text-2xl font-black text-orange-100"></h3>
+        <ul id="modal-features" class="mt-5 space-y-3"></ul>
+        <div class="mt-6 flex items-center justify-between border-t border-orange-900/20 pt-5">
+          <div>
+            <span class="font-mono text-xs text-orange-400/50">Desde</span>
+            <p id="modal-price" class="font-mono text-3xl font-black text-orange-100"></p>
+          </div>
+          <a id="modal-cta" href="#" target="_blank" class="magnetic-btn rounded-xl bg-gradient-to-r from-orange-600 to-red-600 px-6 py-3 font-mono text-sm font-bold text-white transition-all duration-300 hover:shadow-lg hover:shadow-orange-800/30">
+            INSCRIBIRME
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clases -->
+  <section id="clases" class="border-t border-orange-900/15 px-6 py-32">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-4 text-center font-mono text-[11px] text-orange-500/70 uppercase tracking-[0.2em]">// horarios</div>
+      <h2 class="mb-4 text-center text-5xl font-black tracking-tight sm:text-6xl">CLASES <span class="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">WEEKLY</span></h2>
+      <p class="mb-12 text-center text-sm text-orange-300/50">Toca una clase para apartar tu cupo por WhatsApp</p>
+
+      <!-- Day tabs -->
+      <div class="mb-8 flex flex-wrap justify-center gap-2">
+        {schedule.map((d, idx) => (
+          <button class="js-day-tab rounded-xl border border-orange-800/30 px-5 py-2.5 font-mono text-xs font-bold text-orange-300/50 transition-all duration-300 hover:border-orange-600/40 hover:text-orange-400 data-active:bg-orange-500/15 data-active:border-orange-500/50 data-active:text-orange-400 data-active:shadow-lg data-active:shadow-orange-900/10" data-day={d.day} data-active={idx === 0 ? '' : undefined} aria-label={"Día " + d.day}>
+            {d.day}
+          </button>
+        ))}
+      </div>
+
+      <!-- Schedule -->
+      {schedule.map((d, idx) => (
+        <div class={`js-day-schedule ${idx === 0 ? '' : 'hidden'}`} data-day={d.day}>
+          <div class="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+            {d.classes.map((cls) => (
+              <button
+                class="class-card js-class-btn group flex items-center justify-between rounded-2xl border border-orange-900/25 bg-gradient-to-b from-[#181512]/60 to-[#0f0d0a]/60 px-6 py-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-orange-600/40 hover:bg-orange-900/10 hover:shadow-lg hover:shadow-orange-900/10"
+                data-day={d.day}
+                data-time={cls.time}
+                data-class={cls.name}
+                aria-label={"Apartar cupo para " + cls.name + " el " + d.day + " a las " + cls.time}
+              >
+                <div>
+                  <div class="font-mono text-sm font-bold text-orange-200 transition-colors group-hover:text-orange-100">{cls.name}</div>
+                  <div class="font-mono text-xs text-orange-500/50">{cls.time} hs</div>
+                </div>
+                <div class="flex h-8 w-8 items-center justify-center rounded-full border border-orange-800/30 text-orange-600/40 transition-all duration-300 group-hover:border-orange-500/50 group-hover:bg-orange-500/10 group-hover:text-orange-400">
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/></svg>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- BMI Calculator -->
+  <section id="imc" class="border-t border-orange-900/15 px-6 py-32">
+    <div class="mx-auto max-w-4xl">
+      <div class="mb-4 text-center font-mono text-[11px] text-orange-500/70 uppercase tracking-[0.2em]">// calculadora</div>
+      <h2 class="mb-4 text-center text-5xl font-black tracking-tight sm:text-6xl">¿CUAL ES TU <span class="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">IMC</span>?</h2>
+      <p class="mb-14 text-center text-sm text-orange-300/50">Ingresa tu peso y altura para saber tu indice de masa corporal</p>
+
+      <div class="grid gap-10 md:grid-cols-2">
+        <div class="space-y-6">
+          <div>
+            <label class="mb-2 block font-mono text-xs text-orange-400/50 uppercase tracking-wider">Peso (kg)</label>
+            <input id="bmi-weight" type="number" value="70" min="30" max="250" class="w-full rounded-xl border border-orange-900/30 bg-[#181512]/60 px-5 py-4 font-mono text-lg text-orange-100 outline-none transition-all duration-300 focus:border-orange-500/50 focus:shadow-lg focus:shadow-orange-900/10 focus:bg-[#181512]/80" />
+          </div>
+          <div>
+            <label class="mb-2 block font-mono text-xs text-orange-400/50 uppercase tracking-wider">Altura (cm)</label>
+            <input id="bmi-height" type="number" value="170" min="100" max="250" class="w-full rounded-xl border border-orange-900/30 bg-[#181512]/60 px-5 py-4 font-mono text-lg text-orange-100 outline-none transition-all duration-300 focus:border-orange-500/50 focus:shadow-lg focus:shadow-orange-900/10 focus:bg-[#181512]/80" />
+          </div>
+          <button id="bmi-btn" class="magnetic-btn w-full rounded-xl bg-gradient-to-r from-orange-600 to-red-600 py-4 font-mono text-sm font-bold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-orange-800/30 hover:-translate-y-0.5" aria-label="Calcular índice de masa corporal">
+            CALCULAR IMC
+          </button>
+        </div>
+        <div id="bmi-result" class="flex flex-col items-center justify-center rounded-2xl border border-orange-900/20 bg-gradient-to-b from-[#181512]/40 to-[#0f0d0a]/40 p-10 text-center">
+          <div class="mb-4 font-mono text-7xl font-black text-orange-500" id="bmi-value">--</div>
+          <div class="mb-2 font-mono text-sm font-bold text-orange-400" id="bmi-category">Ingresa tus datos</div>
+          <div class="max-w-xs text-xs text-orange-400/40" id="bmi-desc">Completá peso y altura para calcular tu IMC</div>
+          <div class="mt-8 w-full">
+            <div class="flex h-2 w-full overflow-hidden rounded-full bg-orange-900/20">
+              <div id="bmi-bar" class="h-full rounded-full bg-gradient-to-r from-orange-500 via-red-500 to-orange-600 transition-all duration-700 ease-out" style="width:0%"></div>
+            </div>
+            <div class="mt-2 flex w-full justify-between text-[10px] text-orange-500/30 font-mono">
+              <span>Bajo</span><span>Normal</span><span>Sobre</span><span>Obeso</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Entrenadores -->
+  <section id="entrenadores" class="border-t border-orange-900/15 px-6 py-32">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-4 text-center font-mono text-[11px] text-orange-500/70 uppercase tracking-[0.2em]">// staff</div>
+      <h2 class="mb-16 text-center text-5xl font-black tracking-tight sm:text-6xl">TUS <span class="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">ENTRENADORES</span></h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { name: 'Luis M.', role: 'Crossfit / Funcional', exp: '8 años', ig: '@luismfit', desc: 'Especialista en entrenamiento de alta intensidad', emoji: '🏋️' },
+          { name: 'Ana P.', role: 'Yoga / Pilates', exp: '6 años', ig: '@anapyoga', desc: 'Certificada en India y Argentina', emoji: '🧘' },
+          { name: 'Carlos G.', role: 'Boxeo / Kickboxing', exp: '10 años', ig: '@carlosgbox', desc: 'Exboxeador profesional', emoji: '🥊' },
+          { name: 'Valentina R.', role: 'Spinning / Zumba', exp: '5 años', ig: '@valerhythm', desc: 'La energia en persona', emoji: '💃' },
+        ].map((t) => (
+          <div class="trainer-card group relative overflow-hidden rounded-2xl border border-orange-900/25 bg-gradient-to-b from-[#181512]/80 to-[#0f0d0a]/80 p-6 text-center transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-900/15">
+            <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            <div class="relative mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-2xl border border-orange-700/20 bg-gradient-to-br from-orange-900/30 to-red-900/20 text-3xl transition-all duration-500 group-hover:border-orange-500/40 group-hover:shadow-lg group-hover:shadow-orange-900/20 group-hover:scale-110">
+              {t.emoji}
+            </div>
+            <h3 class="relative font-mono text-sm font-bold text-orange-200 transition-colors group-hover:text-orange-100">{t.name}</h3>
+            <p class="relative mt-1 text-xs text-orange-500/80">{t.role}</p>
+            <p class="relative mt-2 text-xs text-orange-300/40">{t.desc}</p>
+            <div class="relative mt-3 font-mono text-[10px] text-orange-400/30">{t.ig} · {t.exp}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="relative h-px w-full overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"></div>
+  </div>
+
+  <!-- Testimonios -->
+  <section class="px-6 py-32">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-4 text-center font-mono text-[11px] text-orange-500/70 uppercase tracking-[0.2em]">// resultados</div>
+      <h2 class="mb-16 text-center text-5xl font-black tracking-tight sm:text-6xl">TRANSFORMACIONES <span class="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">REALES</span></h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {[
+          { name: 'Sofia M.', text: 'Empece sin saber hacer nada y en 3 meses ya veo resultados. Los instructores son increibles.', rating: 5 },
+          { name: 'Luis R.', text: 'El mejor gimnasio de Caracas. Ambiente familiar, equipos nuevos y horarios flexibles.', rating: 5 },
+          { name: 'Camila P.', text: 'Las clases de crossfit me cambiaron la vida. Baje 12 kilos en 4 meses.', rating: 5 },
+        ].map((rev) => (
+          <div class="review-card group relative overflow-hidden rounded-2xl border border-orange-900/25 bg-gradient-to-b from-[#181512]/60 to-[#0f0d0a]/60 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-orange-600/30 hover:shadow-xl hover:shadow-orange-900/10">
+            <div class="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-orange-500 to-red-500 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            <div class="mb-4 flex gap-1">
+              {Array.from({ length: 5 }, (_, j) => (
+                <svg key={j} class={"h-4 w-4 transition-all duration-300 " + (j < rev.rating ? "text-orange-500" : "text-orange-800/20")} fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
+            </div>
+            <p class="mb-5 text-sm leading-relaxed text-orange-200/70">{rev.text}</p>
+            <div class="flex items-center gap-3">
+              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-orange-500/10 font-mono text-xs font-bold text-orange-400">{rev.name.charAt(0)}</div>
+              <span class="font-mono text-xs text-orange-300/50">{rev.name}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-orange-900/15 px-6 py-16" style="background: radial-gradient(ellipse at bottom, rgba(234,88,12,0.04) 0%, transparent 70%)">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-10 md:grid-cols-3">
+        <div>
+          <div class="flex items-center gap-2 font-mono text-lg font-bold text-orange-500">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            RUPTURA
+          </div>
+          <p class="mt-3 text-xs text-orange-300/40 leading-relaxed">{r.desc}</p>
+        </div>
+        <div>
+          <h4 class="mb-4 font-mono text-xs font-bold text-orange-400/80 uppercase tracking-widest">Horarios</h4>
+          <p class="text-xs text-orange-300/50">{r.schedule}</p>
+          <p class="mt-2 text-xs text-orange-300/50">{r.address}</p>
+        </div>
+        <div>
+          <h4 class="mb-4 font-mono text-xs font-bold text-orange-400/80 uppercase tracking-widest">Redes</h4>
+          <div class="flex gap-3">
+            {[
+              { href: "https://wa.me/" + r.wa, label: "WhatsApp", path: "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" },
+              { href: "https://instagram.com/" + r.ig.replace('@',''), label: "Instagram", path: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
+              { href: "https://facebook.com/" + r.fb, label: "Facebook", path: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" },
+              { href: "https://x.com/" + r.x.replace('@',''), label: "X", path: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
+            ].map((s) => (
+              <a href={s.href} target="_blank" class="flex h-10 w-10 items-center justify-center rounded-xl border border-orange-800/30 text-orange-400/60 transition-all duration-300 hover:border-orange-500/50 hover:text-orange-400 hover:bg-orange-500/10 hover:shadow-lg hover:shadow-orange-900/15 hover:-translate-y-0.5" aria-label={s.label}>
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d={s.path}/></svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 border-t border-orange-900/15 pt-8 text-center space-y-2">
+        <p class="font-mono text-[10px] text-orange-300/25">Demo — Cryfield.dev</p>
+        <p class="font-mono text-[10px] text-orange-400/40">Hecho por <a href="https://cryfield.dev" target="_blank" class="text-orange-500 hover:text-orange-400 transition-colors">Cryfield.dev</a> — Web para tu negocio</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed top-24 right-6 z-50 hidden overflow-hidden rounded-2xl border border-orange-500/20 bg-[#0f0d0a]/95 px-5 py-3.5 shadow-2xl shadow-orange-900/20 backdrop-blur-xl">
+    <div class="flex items-center gap-3">
+      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-orange-500/10">
+        <svg class="h-4 w-4 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <p id="toast-msg" class="font-mono text-sm text-orange-200"></p>
+    </div>
+  </div>
+
+  <!-- Scroll to top -->
+  <button id="scroll-top" class="fixed bottom-6 right-6 z-40 hidden h-12 w-12 items-center justify-center rounded-2xl border border-orange-800/30 bg-[#0f0d0a]/90 shadow-xl shadow-black/30 backdrop-blur-xl transition-all duration-500 hover:border-orange-500/50 hover:bg-orange-500/10 hover:text-orange-400 hover:-translate-y-1 text-orange-400/50">
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+  </button>
+</section>
+
+<style>
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes orbit { from { transform: rotate(0deg) translateX(160px) rotate(0deg); } to { transform: rotate(360deg) translateX(160px) rotate(-360deg); } }
+  @keyframes scrollBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+  @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  @keyframes pulseGlow { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+
+  .hero-line { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .hero-line:nth-child(1) { animation-delay: 0.1s; }
+  .hero-line:nth-child(2) { animation-delay: 0.2s; }
+  .hero-line:nth-child(3) { animation-delay: 0.3s; }
+
+  .hero-orb { animation: float 8s ease-in-out infinite; }
+  .hero-orb:nth-child(2) { animation-delay: 2s; }
+
+  .hero-ring { animation: float 6s ease-in-out infinite; transform-origin: center; }
+  .hero-ring:nth-child(2) { animation-delay: 1s; }
+
+  .orbit-dot { animation: orbit 12s linear infinite; transform-origin: 200px 200px; }
+  .orbit-dot:nth-child(2) { animation-delay: -3s; animation-duration: 15s; }
+  .orbit-dot:nth-child(3) { animation-delay: -6s; animation-duration: 18s; }
+  .orbit-dot:nth-child(4) { animation-delay: -9s; animation-duration: 14s; }
+
+  .scroll-dot { animation: scrollBounce 1.5s ease-in-out infinite; }
+
+  .divider-glow { animation: pulseGlow 3s ease-in-out infinite; }
+
+  .plan-card { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .plan-card:nth-child(1) { animation-delay: 0.05s; }
+  .plan-card:nth-child(2) { animation-delay: 0.15s; }
+  .plan-card:nth-child(3) { animation-delay: 0.25s; }
+
+  .class-card { animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+  .trainer-card { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .trainer-card:nth-child(1) { animation-delay: 0.05s; }
+  .trainer-card:nth-child(2) { animation-delay: 0.1s; }
+  .trainer-card:nth-child(3) { animation-delay: 0.15s; }
+  .trainer-card:nth-child(4) { animation-delay: 0.2s; }
+
+  .review-card { animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .review-card:nth-child(1) { animation-delay: 0.05s; }
+  .review-card:nth-child(2) { animation-delay: 0.15s; }
+  .review-card:nth-child(3) { animation-delay: 0.25s; }
+
+  .stat-card { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .stat-card:nth-child(1) { animation-delay: 0.05s; }
+  .stat-card:nth-child(2) { animation-delay: 0.1s; }
+  .stat-card:nth-child(3) { animation-delay: 0.15s; }
+  .stat-card:nth-child(4) { animation-delay: 0.2s; }
+
+  .magnetic-btn { position: relative; }
+  .magnetic-btn::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(249,115,22,0.3), rgba(239,68,68,0.3));
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: -1;
+    filter: blur(8px);
+  }
+  .magnetic-btn:hover::after { opacity: 1; }
+
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+  input[type=number] { -moz-appearance: textfield; }
+
+  #scroll-top.show { display: flex; }
+</style>
+
+<script>
+  import { animate, stagger } from 'animejs'
+
+  const BS_RATE = 50
+  const DEFAULT_CURRENCY = 'usd'
+  const PAY_METHODS = {
+    usd: ['Zelle', 'Efectivo USD', 'USDT', 'PayPal'],
+    bs: ['Pago movil', 'Transferencia'],
+  }
+
+  const state = {
+    apiRate: null,
+    currency: DEFAULT_CURRENCY,
+    payment: null,
+    billing: 'one-time',
+  }
+
+  // --- API ---
+  async function fetchRate() {
+    try {
+      const res = await fetch('https://ve.dolarapi.com/v1/dolares/oficial')
+      if (!res.ok) throw new Error('HTTP ' + res.status)
+      const data = await res.json()
+      if (data.promedio > 0) state.apiRate = data.promedio
+      updatePrices()
+    } catch (e) { console.warn('Failed to fetch rate, usando fallback') }
+  }
+
+  function getRate() {
+    if (state.currency === 'usd') return 1
+    return state.apiRate || (BS_RATE > 0 ? BS_RATE : 1)
+  }
+
+  function formatPrice(val) {
+    if (state.currency === 'usd') return '$' + val.toFixed(2)
+    return 'Bs.' + val.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+  }
+
+  // --- Hero animations with anime.js ---
+  animate('.hero-badge', { y: [20, 0], opacity: [0, 1], duration: 600, ease: 'outExpo', delay: 200 })
+  animate('.hero-subtitle', { y: [30, 0], opacity: [0, 1], duration: 700, ease: 'outExpo', delay: 500 })
+  animate('.hero-desc', { y: [20, 0], opacity: [0, 1], duration: 600, ease: 'outExpo', delay: 700 })
+  animate('.hero-cta', { y: [20, 0], opacity: [0, 1], duration: 600, ease: 'outExpo', delay: 900 })
+  animate('.hero-visual', { scale: [0.9, 1], opacity: [0, 1], duration: 1000, ease: 'outExpo', delay: 400 })
+
+  // --- Scroll-triggered stat counters ---
+  const statEls = document.querySelectorAll('.js-stat')
+  let statsAnimated = false
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !statsAnimated) {
+        statsAnimated = true
+        statEls.forEach(el => {
+          const target = parseFloat(el.dataset.target)
+          const suffix = el.dataset.suffix
+          const isDecimal = target % 1 !== 0
+          animate(el, {
+            textContent: [0, target],
+            duration: 2000,
+            ease: 'outExpo',
+            round: isDecimal ? 10 : 1,
+            onUpdate: (anim) => {
+              const val = isDecimal ? parseFloat(anim.textContent).toFixed(1) : Math.round(anim.textContent)
+              el.textContent = val + (suffix || '')
+            }
+          })
+        })
+      }
+    })
+  }, { threshold: 0.5 })
+  statEls.forEach(el => statsObserver.observe(el))
+
+  // --- Toast ---
+  const toast = document.getElementById('toast')
+  const toastMsg = document.getElementById('toast-msg')
+
+  function showToast(msg) {
+    toastMsg.textContent = msg
+    toast.classList.remove('hidden')
+    toast.style.transform = 'translateX(100px)'
+    toast.style.opacity = '0'
+    animate(toast, { x: 0, opacity: 1, duration: 400, ease: 'outExpo' })
+    setTimeout(() => {
+      animate(toast, { x: 100, opacity: 0, duration: 300, ease: 'inExpo', onComplete: () => {
+        toast.classList.add('hidden')
+        toast.style.transform = ''
+        toast.style.opacity = ''
+      }})
+    }, 2000)
+  }
+
+  // --- Scroll to top ---
+  const scrollTopBtn = document.getElementById('scroll-top')
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      scrollTopBtn.classList.remove('hidden')
+      scrollTopBtn.classList.add('show')
+    } else {
+      scrollTopBtn.classList.add('hidden')
+      scrollTopBtn.classList.remove('show')
+    }
+  })
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
+
+  // --- Magnetic button effect ---
+  document.querySelectorAll('.magnetic-btn').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect()
+      const x = e.clientX - rect.left - rect.width / 2
+      const y = e.clientY - rect.top - rect.height / 2
+      animate(btn, { x: x * 0.15, y: y * 0.15, duration: 300, ease: 'outQuad' })
+    })
+    btn.addEventListener('mouseleave', () => {
+      animate(btn, { x: 0, y: 0, duration: 500, ease: 'outElastic(1, .5)' })
+    })
+  })
+
+  // --- Scramble text on hover ---
+  document.querySelectorAll('.scramble-text').forEach(el => {
+    const original = el.dataset.text || el.textContent
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?0123456789'
+    let interval
+    el.addEventListener('mouseenter', () => {
+      let iteration = 0
+      interval = setInterval(() => {
+        el.textContent = original.split('').map((char, i) => {
+          if (i < iteration) return original[i]
+          return chars[Math.floor(Math.random() * chars.length)]
+        }).join('')
+        iteration += 1 / 2
+        if (iteration >= original.length) clearInterval(interval)
+      }, 30)
+    })
+    el.addEventListener('mouseleave', () => {
+      clearInterval(interval)
+      el.textContent = original
+    })
+  })
+
+  // --- Detail Modal ---
+  let activeTrap = null
+  function focusTrap(element) {
+    const focusable = element.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    const first = focusable[0], last = focusable[focusable.length - 1]
+    function handler(e) {
+      if (e.key !== 'Tab') return
+      if (e.shiftKey) { if (document.activeElement === first) { e.preventDefault(); last.focus() } }
+      else { if (document.activeElement === last) { e.preventDefault(); first.focus() } }
+    }
+    activeTrap = { element, handler, first, last }
+    document.addEventListener('keydown', handler)
+    if (first) first.focus()
+  }
+  function releaseTrap() {
+    if (activeTrap) { document.removeEventListener('keydown', activeTrap.handler); activeTrap = null }
+  }
+
+  const modal = document.getElementById('detail-modal')
+  const modalImg = document.getElementById('modal-img')
+  const modalName = document.getElementById('modal-name')
+  const modalBadge = document.getElementById('modal-badge')
+  const modalFeatures = document.getElementById('modal-features')
+  const modalPrice = document.getElementById('modal-price')
+  const modalCta = document.getElementById('modal-cta')
+  const modalClose = document.getElementById('modal-close')
+
+  function openDetailModal(card) {
+    const name = card.dataset.name
+    const img = card.dataset.img
+    const features = JSON.parse(card.dataset.features)
+    const badge = card.dataset.badge
+    const priceOnetime = parseFloat(card.dataset.priceOnetime)
+    const pricePermonth = parseFloat(card.dataset.pricePermonth)
+    const price = state.billing === 'one-time' ? priceOnetime : pricePermonth
+
+    modalImg.src = img
+    modalImg.alt = name
+    modalName.textContent = name
+    modalBadge.textContent = badge || 'Plan ' + name
+    modalBadge.classList.toggle('hidden', !badge)
+    modalFeatures.innerHTML = features.map(f => `
+      <li class="flex items-start gap-3 text-sm">
+        <svg class="mt-0.5 h-4 w-4 flex-shrink-0 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+        <span class="text-orange-200/60">${f}</span>
+      </li>
+    `).join('')
+    modalPrice.textContent = formatPrice(price * getRate())
+    const periodLabel = state.billing === 'one-time' ? 'pago unico' : 'por mes'
+    const msg = 'Hola! Quiero inscribirme en el plan ' + name + ' (' + periodLabel + ')'
+    modalCta.href = 'https://wa.me/' + '584200000000' + '?text=' + encodeURIComponent(msg)
+    modal.classList.remove('hidden')
+    modal.classList.add('flex')
+    animate(modal.querySelector('.modal-card'), { scale: [0.95, 1], opacity: [0, 1], duration: 300, ease: 'outExpo' })
+    focusTrap(modal)
+  }
+
+  function closeModal() {
+    releaseTrap()
+    modal.classList.add('hidden')
+    modal.classList.remove('flex')
+  }
+
+  modalClose.addEventListener('click', closeModal)
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal() })
+
+  // --- Plan card click ---
+  document.querySelectorAll('.js-plan-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.js-plan-card').forEach(c => {
+        c.removeAttribute('data-selected')
+        c.classList.remove('border-orange-600/40', 'shadow-2xl', 'shadow-orange-900/15')
+        c.classList.add('border-orange-900/25')
+      })
+      card.setAttribute('data-selected', '')
+      card.classList.remove('border-orange-900/25')
+      card.classList.add('border-orange-600/40', 'shadow-2xl', 'shadow-orange-900/15')
+    })
+    card.addEventListener('dblclick', () => openDetailModal(card))
+  })
+
+  // --- Billing toggle ---
+  document.querySelectorAll('.js-billing-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.js-billing-btn').forEach(b => {
+        b.removeAttribute('data-on')
+        b.classList.remove('bg-orange-500/15', 'text-orange-400')
+        b.classList.add('text-orange-300/50')
+      })
+      btn.setAttribute('data-on', '')
+      btn.classList.add('bg-orange-500/15', 'text-orange-400')
+      btn.classList.remove('text-orange-300/50')
+      state.billing = btn.dataset.period
+      updatePrices()
+    })
+  })
+  document.querySelector('.js-billing-btn[data-period="one-time"]')?.click()
+
+  // --- Plan CTA ---
+  document.getElementById('plan-cta').addEventListener('click', () => {
+    const selected = document.querySelector('.js-plan-card[data-selected]') || document.querySelector('.js-plan-card')
+    if (!selected) return
+    const planId = selected.dataset.plan
+    const planNames = { mensual: 'Mensual', trimestral: 'Trimestral', anual: 'Anual' }
+    const priceKey = state.billing === 'one-time' ? 'price-onetime' : 'price-permonth'
+    const price = parseFloat(selected.dataset[priceKey === 'price-onetime' ? 'priceOnetime' : 'pricePermonth'])
+    const periodLabel = state.billing === 'one-time' ? 'pago unico' : 'por mes'
+    const msg = 'Hola! Quiero inscribirme en el plan ' + planNames[planId] + ' (' + periodLabel + ') por ' + formatPrice(price * getRate()) + (state.payment ? ' - ' + state.payment : '')
+    window.open('https://wa.me/584200000000?text=' + encodeURIComponent(msg), '_blank')
+    showToast('Inscribiendote en plan ' + planNames[planId])
+  })
+
+  // --- Schedule day tabs ---
+  document.querySelectorAll('.js-day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.js-day-tab').forEach(t => t.removeAttribute('data-active'))
+      tab.setAttribute('data-active', '')
+      document.querySelectorAll('.js-day-schedule').forEach(el => el.classList.add('hidden'))
+      const target = document.querySelector('.js-day-schedule[data-day="' + tab.dataset.day + '"]')
+      if (target) {
+        target.classList.remove('hidden')
+        animate(target.querySelectorAll('.class-card'), {
+          y: [15, 0],
+          opacity: [0, 1],
+          duration: 400,
+          ease: 'outExpo',
+          delay: stagger(50)
+        })
+      }
+    })
+  })
+
+  // --- Schedule class WhatsApp ---
+  document.querySelectorAll('.js-class-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const msg = 'Hola! Quiero apartar cupo para ' + btn.dataset.class + ' el ' + btn.dataset.day + ' a las ' + btn.dataset.time
+      window.open('https://wa.me/584200000000?text=' + encodeURIComponent(msg), '_blank')
+      showToast('Apartando cupo: ' + btn.dataset.class + ' ' + btn.dataset.time)
+    })
+  })
+
+  // --- BMI Calculator ---
+  function calcBmi() {
+    const w = parseFloat(document.getElementById('bmi-weight').value)
+    const h = parseFloat(document.getElementById('bmi-height').value) / 100
+    if (!w || !h || h <= 0) return
+    const bmi = w / (h * h)
+    const result = document.getElementById('bmi-result')
+    result.style.opacity = '1'
+    animate(document.getElementById('bmi-value'), { textContent: [0, bmi], duration: 1000, ease: 'outExpo', round: 1 })
+    let cat, desc, pct
+    if (bmi < 18.5) { cat = 'Bajo peso'; desc = 'Te recomendamos el plan con nutricionista para llegar a tu peso ideal'; pct = 25 }
+    else if (bmi < 25) { cat = 'Peso normal'; desc = 'Estas en un peso saludable. Mantenelo con nuestros planes de entrenamiento'; pct = 50 }
+    else if (bmi < 30) { cat = 'Sobrepeso'; desc = 'Nuestro plan Trimestral con evaluacion fisica es ideal para vos'; pct = 75 }
+    else { cat = 'Obesidad'; desc = 'Te recomendamos el plan Anual con seguimiento personalizado y nutricionista'; pct = 100 }
+    document.getElementById('bmi-category').textContent = cat
+    document.getElementById('bmi-desc').textContent = desc
+    animate(document.getElementById('bmi-bar'), { width: [0, pct + '%'], duration: 800, ease: 'outExpo' })
+  }
+
+  document.getElementById('bmi-btn').addEventListener('click', calcBmi)
+  document.getElementById('bmi-weight').addEventListener('input', calcBmi)
+  document.getElementById('bmi-height').addEventListener('input', calcBmi)
+  calcBmi()
+
+  // --- Currency selector ---
+  function selectCurrency(curr) {
+    state.currency = curr
+    state.payment = null
+    const slider = document.getElementById('curr-slider')
+    if (slider) slider.style.transform = curr === 'bs' ? 'translateX(100%)' : 'translateX(0)'
+    document.querySelectorAll('#currency-switch span[data-curr]').forEach(el => {
+      el.classList.toggle('text-orange-400', el.dataset.curr === curr)
+      el.classList.toggle('text-orange-300/40', el.dataset.curr !== curr)
+    })
+    updatePrices()
+    renderPayMethods()
+  }
+
+  document.querySelectorAll('#currency-switch span[data-curr]').forEach(el => {
+    el.addEventListener('click', () => selectCurrency(el.dataset.curr))
+  })
+  selectCurrency(state.currency)
+
+  // --- Payment methods ---
+  function renderPayMethods() {
+    const el = document.getElementById('pay-methods')
+    const methods = PAY_METHODS[state.currency] || []
+    el.innerHTML = methods.map(m => {
+      const active = state.payment === m
+      return `<button class="js-pay-opt flex-shrink-0 rounded-lg border px-3 py-1.5 font-mono text-[10px] font-bold transition-all duration-300 ${active ? 'bg-orange-500/15 text-orange-400 border-orange-500' : 'text-orange-300/40 border-orange-800/30 hover:border-orange-500/50 hover:text-orange-300/70'}">${m}</button>`
+    }).join('')
+    el.querySelectorAll('.js-pay-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.payment = btn.textContent.trim()
+        renderPayMethods()
+      })
+    })
+  }
+
+  function updatePrices() {
+    const rate = getRate()
+    document.querySelectorAll('.js-plan-card').forEach(card => {
+      const priceKey = state.billing === 'one-time' ? 'priceOnetime' : 'pricePermonth'
+      const usdPrice = parseFloat(card.dataset[priceKey])
+      const priceEl = card.querySelector('.js-plan-price')
+      const periodEl = card.querySelector('.js-plan-period')
+      if (state.currency === 'usd') {
+        priceEl.textContent = '$' + usdPrice.toFixed(2)
+      } else {
+        priceEl.textContent = 'Bs.' + (usdPrice * rate).toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+      }
+      periodEl.textContent = state.billing === 'one-time' ? 'Pago unico' : usdPrice + ' USD/mes'
+    })
+  }
+
+  // --- Init ---
+  fetchRate().finally(() => { updatePrices() })
+  renderPayMethods()
+</script>

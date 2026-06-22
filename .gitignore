@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# temp / working files
+a/
+a.zip
+dist.zip
+pendientes.md
+is-a-dev/

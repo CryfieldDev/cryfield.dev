@@ -4,7 +4,7 @@ import react from '@astrojs/react'
 import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-  site: 'https://cryfield.dev',
+  site: 'https://cry.is-a.dev',
   server: { port: 3000 },
   integrations: [react(), sitemap()],
   vite: {

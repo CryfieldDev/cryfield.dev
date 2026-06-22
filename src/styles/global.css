@@ -36,6 +36,27 @@ body {
   color: var(--color-cry-darkest);
 }
 
+/* ── SKIP LINK ── */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 50%;
+  z-index: 10001;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background: var(--color-cry-lime);
+  color: var(--color-cry-darkest);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 /* ── CROSSHAIR ── */
 #crosshair {
   position: fixed;

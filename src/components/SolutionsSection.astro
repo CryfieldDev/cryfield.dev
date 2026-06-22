@@ -1,46 +1,55 @@
 ---
 const solutions = [
   {
-    title: 'Gastronomia',
+    slug: 'gastronomia',
+    title: 'Pizzería / Gastronomía',
     icon: '/icons/food.json',
-    desc: 'Menu digital interactivo con carrito que envia pedidos formateados directo al WhatsApp del restaurante.',
+    desc: 'Menú digital con imágenes, extras por ítem y carrito que envía pedidos formateados directo al WhatsApp.',
   },
   {
+    slug: 'gimnasios',
     title: 'Gimnasios',
     icon: '/icons/gym.json',
     desc: 'Landing de captacion con horarios, parrilla de clases y agendamiento de prueba gratis al staff.',
   },
   {
+    slug: 'consultorios',
     title: 'Consultorios',
     icon: '/icons/shield.json',
     desc: 'Tarjeta de presentacion digital con credenciales, testimonios y solicitud de citas optimizada.',
   },
   {
+    slug: 'tiendas',
     title: 'Tiendas',
     icon: '/icons/morph-shopping.json',
     desc: 'Catalogo de productos, carrito de compras y pedidos que llegan directo a tu WhatsApp.',
   },
   {
+    slug: 'tecnologia',
     title: 'Tecnologia',
     icon: '/icons/tech.json',
     desc: 'Pagina profesional para servicios tecnicos, reparaciones, soporte IT o desarrollo de software.',
   },
   {
+    slug: 'belleza',
     title: 'Belleza',
     icon: '/icons/beauty.json',
     desc: 'Landing elegante para salones, barberias y centros de estetica con galeria de trabajos.',
   },
   {
+    slug: 'inmobiliarias',
     title: 'Inmobiliarias',
     icon: '/icons/legacy-home.json',
     desc: 'Pagina con galeria de propiedades, filtros de busqueda y contacto directo a WhatsApp.',
   },
   {
+    slug: 'educacion',
     title: 'Educacion',
     icon: '/icons/morph-account.json',
     desc: 'Landing para academias, profesores o cursos online con inscripciones y horarios.',
   },
   {
+    slug: 'servicios',
     title: 'Servicios',
     icon: '/icons/services.json',
     desc: 'Presencia digital para talleres mecanicos, electricistas, plomeros y oficios en general.',
@@ -55,20 +64,26 @@ const solutions = [
       9 RUBROS <span class="text-cry-lime">PARA ELEGIR</span>
     </h2>
     <p class="mb-10 text-center text-sm text-cry-muted">
-      Elegi el tuyo y te mostramos lo que podemos hacer
+      Elegi el tuyo y probalo funcionando
     </p>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {solutions.map((sol) => (
-        <div class="group flex items-start gap-4 rounded-lg border border-cry-border/20 bg-cry-card/20 p-4 transition-all hover:border-cry-lime/20 hover:bg-cry-card/40">
+        <a
+          href={`/plantillas/${sol.slug}`}
+          class="group flex items-start gap-4 rounded-lg border border-cry-border/20 bg-cry-card/20 p-4 transition-all hover:border-cry-lime/30 hover:bg-cry-card/40 hover:-translate-y-0.5"
+        >
           <div class="flex-shrink-0">
             <lord-icon src={sol.icon} trigger="hover" colors="primary:#a3e635" style="width:36px;height:36px"></lord-icon>
           </div>
           <div>
             <h3 class="mb-1 font-mono text-sm font-bold text-cry-lime">{sol.title}</h3>
             <p class="text-xs leading-relaxed text-cry-muted/70">{sol.desc}</p>
+            <div class="mt-3 font-mono text-xs text-cry-lime/50 group-hover:text-cry-lime transition-colors">
+              Ver demo &gt;
+            </div>
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </div>

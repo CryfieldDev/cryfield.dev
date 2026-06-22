@@ -1,62 +1,76 @@
 ﻿---
 const r = {
-  name: "El Fogon Criollo",
-  tagline: "Comida venezolana que abraza el alma",
-  slogan: "Desde 2015 llevando el sabor de Venezuela a tu mesa",
+  name: "Pizza Roma",
+  tagline: "La tradizione italiana en cada rebanada",
+  slogan: "Masa madre, horno de leña y los mejores ingredientes desde 2015",
   wa: "584200000000",
-  address: "Calle Bolivar, Centro Comercial Los Andes, Local 5",
-  schedule: "Lun-Sab: 11:00 - 22:00 | Dom: 12:00 - 20:00",
-  ig: "@elfogoncriollo",
-  fb: "elfogoncriollo",
-  x: "@elfogoncrio11",
+  address: "Calle Bolívar, Centro Comercial Los Andes, Local 5",
+  schedule: "Lun-Sáb: 11:00 - 23:00 | Dom: 12:00 - 21:00",
+  ig: "@pizzaroma",
+  fb: "pizzaroma",
+  x: "@pizzaroma",
 }
 
 const config = {
-  defaultCurrency: 'usd', // 'usd' or 'bs' — what customer sees by default
-  bsRate: 52.50,          // 1 USD = X Bs (seller sets this; 0 = auto from API fallback)
+  defaultCurrency: 'usd',
+  bsRate: 52.50,
   ivaOn: true,
 }
 
+const unsplash = (id, w=600) =>
+  `https://images.unsplash.com/${id}?w=${w}&auto=format&fm=webp`
+
 const menu = [
-  { cat: "Entradas", items: [
-    { n: "Tequenos", d: "8 palitos de queso guayanes fritos", p: 5.50 },
-    { n: "Empanadas", d: "2 empanadas de carne mechada o pollo", p: 4.00 },
-    { n: "Arepitas", d: "4 mini arepitas con nata y queso", p: 3.50 },
-    { n: "Ceviche Peruano", d: "Ceviche clasico con chicharron de pescado", p: 7.00 },
+  { cat: "Pizzas Clásicas", items: [
+    { n: "Margherita", d: "Tomate, mozzarella fresca, albahaca", p: 8.99, img: unsplash("photo-1565299624946-b28f40a0ae38"), hasExtras: true },
+    { n: "Pepperoni", d: "Pepperoni, mozzarella, salsa de tomate", p: 9.99, img: unsplash("photo-1628840042765-356cda07504e"), hasExtras: true },
+    { n: "Napolitana", d: "Anchoas, aceitunas, alcaparras, mozzarella", p: 10.99, img: unsplash("photo-1778449068450-cf13d3d133c4"), hasExtras: true },
+    { n: "Mozzarella", d: "Mozzarella, orégano, salsa de tomate", p: 7.99, img: unsplash("photo-1513104890138-7c749659a591"), hasExtras: true },
   ]},
-  { cat: "Principales", items: [
-    { n: "Pabellon Criollo", d: "Arroz, caraotas, carne mechada, tajadas y huevo", p: 12.00 },
-    { n: "Parrilla Mixta", d: "Costilla, chorizo, pollo y churrasco con guarnicion", p: 18.00 },
-    { n: "Asado Negro", d: "Carne de res en salsa oscura con arroz y tajadas", p: 14.00 },
-    { n: "Pescado Frito", d: "Pescado fresco frito con ensalada y patacones", p: 15.00 },
-  ]},
-  { cat: "Postres", items: [
-    { n: "Tres Leches", d: "Bizcocho banado en tres leches con merengue", p: 5.00 },
-    { n: "Bienmesabe", d: "Postre de coco y almibar con vainilla", p: 4.50 },
-    { n: "Quesillo", d: "Flan de queso horneado con caramelo", p: 4.00 },
+  { cat: "Pizzas Especiales", items: [
+    { n: "Hawaiana", d: "Jamón, piña, mozzarella", p: 11.99, img: unsplash("photo-1658124927538-fb804bc5fc9f"), hasExtras: true },
+    { n: "BBQ Chicken", d: "Pollo BBQ, cebolla morada, mozzarella", p: 12.99, img: unsplash("photo-1767065603116-8cee3bf11372"), hasExtras: true },
+    { n: "Vegetariana", d: "Champiñones, pimientos, aceitunas, cebolla", p: 10.99, img: unsplash("photo-1646129618447-4d116bfd69ab"), hasExtras: true },
+    { n: "Mexicana", d: "Chorizo, jalapeño, pimientos, mozzarella", p: 12.99, img: unsplash("photo-1551504734-5ee1c4a1479b"), hasExtras: true },
   ]},
   { cat: "Bebidas", items: [
-    { n: "Papelon con Limon", d: "Refrescante jugo de papelon y limon", p: 2.50 },
-    { n: "Jugo de Parchita", d: "Maracuya natural colado", p: 3.00 },
-    { n: "Cocada", d: "Batido cremoso de coco", p: 3.50 },
-    { n: "Cerveza Polar", d: "Lata helada 355ml", p: 2.00 },
+    { n: "Coca-Cola", d: "Lata 355ml bien fría", p: 1.50, img: unsplash("photo-1554866585-cd94860890b7"), hasExtras: false },
+    { n: "Sprite", d: "Lata 355ml", p: 1.50, img: unsplash("photo-1554310636-9eef29dea2fa"), hasExtras: false },
+    { n: "Agua Mineral", d: "Botella 500ml", p: 1.00, img: unsplash("photo-1546924282-0f057bc9dd5a"), hasExtras: false },
+    { n: "Cerveza Polar", d: "Lata 355ml helada", p: 2.00, img: unsplash("photo-1651421479146-247cdaf0eaad"), hasExtras: false },
+  ]},
+  { cat: "Postres", items: [
+    { n: "Tiramisú", d: "Clásico italiano con mascarpone y cacao", p: 5.00, img: unsplash("photo-1571877227200-a0d98ea607e9"), hasExtras: false },
+    { n: "Cannoli", d: "Relleno de ricotta y chispas de chocolate", p: 4.50, img: unsplash("photo-1551024601-bec78aea704b"), hasExtras: false },
+    { n: "Panna Cotta", d: "Con frutos rojos y reducción de balsámico", p: 5.00, img: unsplash("photo-1488477181946-6428a0291777"), hasExtras: false },
   ]},
 ]
 ---
 
-<section class="min-h-screen bg-[#0c0a09] text-[#fef3c7] font-sans overflow-x-hidden">
+<section id="gastro-content" class="min-h-screen bg-white text-gray-900 font-sans overflow-x-hidden">
   <!-- Nav -->
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-amber-900/30 bg-[#0c0a09]/90 backdrop-blur-lg">
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-lg">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-      <a href="#" class="font-mono text-lg font-bold tracking-wider text-amber-500">FOGON</a>
+      <a href="#" class="flex items-center gap-2 font-mono text-lg font-bold tracking-wider text-red-600">
+        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <path d="M12 3 L21 19 Q12 22 3 19 Z" />
+          <path d="M3 19 Q12 22 21 19" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M12 3 Q13 7 11 9" stroke-width="1.2" stroke-linecap="round" />
+          <circle cx="10" cy="13" r="2" stroke-width="1" />
+          <circle cx="15" cy="15" r="1.8" stroke-width="1" />
+          <circle cx="8" cy="17.5" r="1.5" stroke-width="1" />
+          <circle cx="13.5" cy="11" r="1.3" stroke-width="1" />
+        </svg>
+        ROMA
+      </a>
       <div class="flex items-center gap-6">
-        <a href="#menu" class="hidden text-sm text-amber-300/70 transition-colors hover:text-amber-400 sm:block">Menu</a>
-        <a href="#resenas" class="hidden text-sm text-amber-300/70 transition-colors hover:text-amber-400 sm:block">Resenas</a>
-        <button id="open-cart-btn" class="relative flex items-center gap-2 rounded-full border border-amber-700/40 bg-amber-900/20 px-4 py-2 text-sm text-amber-400 transition-all hover:bg-amber-800/30">
+        <a href="#menu" class="hidden text-sm text-gray-600 transition-colors hover:text-red-600 sm:block">Pizzas</a>
+        <a href="#resenas" class="hidden text-sm text-gray-600 transition-colors hover:text-red-600 sm:block">Reseñas</a>
+        <button id="open-cart-btn" class="relative flex items-center gap-2 rounded-full border border-red-200 bg-red-50 px-4 py-2 text-sm text-red-600 transition-all hover:bg-red-100">
           <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"/>
           </svg>
-          <span id="nav-cart-count" class="hidden rounded-full bg-amber-500 px-1.5 py-0.5 text-[10px] font-bold text-[#0c0a09]">0</span>
+          <span id="nav-cart-count" class="hidden rounded-full bg-red-600 px-1.5 py-0.5 text-[10px] font-bold text-white">0</span>
         </button>
       </div>
     </div>
@@ -64,34 +78,40 @@ const menu = [
 
   <!-- Hero -->
   <section class="relative flex min-h-screen items-center overflow-hidden px-6 pt-24">
-    <div class="pointer-events-none absolute inset-0">
-      <div class="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-amber-600/10 blur-[150px]"></div>
-      <div class="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-red-600/10 blur-[150px]"></div>
-      <div class="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/5 blur-[100px]"></div>
+    <div class="pointer-events-none absolute inset-0 bg-checkered">
+      <div class="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-red-100 blur-[150px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-red-50 blur-[150px]"></div>
     </div>
     <div class="hero-content relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-16 lg:flex-row">
       <div class="flex-1 text-center lg:text-left">
-        <div class="hero-badge mb-6 inline-block rounded-full border border-amber-700/30 bg-amber-900/20 px-4 py-1 font-mono text-[11px] text-amber-500 uppercase tracking-[0.2em]">Desde 2015</div>
-        <h1 class="hero-title mb-4 text-5xl font-black leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">{r.name}</h1>
-        <p class="hero-subtitle mb-2 text-xl text-amber-400/70 sm:text-2xl">{r.tagline}</p>
-        <p class="hero-desc mb-8 text-sm text-amber-300/50">{r.slogan}</p>
+        <div class="hero-badge mb-6 inline-block rounded-full border border-red-200 bg-red-50 px-4 py-1.5 font-mono text-[11px] text-red-600 uppercase tracking-[0.2em] font-semibold">Horno de leña desde 2015</div>
+        <h1 class="hero-title mb-4 text-5xl font-black leading-tight tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-gray-900">
+          LA <span class="text-red-600">PIZZA</span><br/>PERFECTA
+        </h1>
+        <p class="hero-subtitle mb-2 text-xl text-gray-600 sm:text-2xl">{r.tagline}</p>
+        <p class="hero-desc mb-8 text-sm text-gray-600">{r.slogan}</p>
         <div class="hero-cta flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-          <a href="#menu" class="group inline-flex items-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-8 py-4 font-mono text-sm font-bold text-amber-400 shadow-lg shadow-amber-900/20 transition-all hover:border-amber-400/60 hover:bg-amber-500/20 hover:shadow-amber-800/30">
-            <span>VER MENU</span>
+          <a href="#menu" class="group inline-flex items-center gap-2 rounded-lg bg-red-600 px-8 py-4 font-mono text-sm font-bold text-white shadow-lg shadow-red-200 transition-all hover:bg-red-700">
+            <span>VER PIZZAS</span>
             <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
-          <a href={"https://wa.me/" + r.wa} target="_blank" class="font-mono text-xs text-amber-300/50 underline underline-offset-4 decoration-amber-800/40 transition-colors hover:text-amber-300">Pedir por WhatsApp</a>
+          <a href={"https://wa.me/" + r.wa} target="_blank" class="font-mono text-xs text-gray-600 underline underline-offset-4 decoration-gray-300 transition-colors hover:text-red-600">Pedir por WhatsApp</a>
         </div>
       </div>
       <div class="hero-image flex-1">
         <div class="relative mx-auto h-80 w-80 sm:h-96 sm:w-96">
-          <div class="absolute inset-0 animate-pulse rounded-full bg-gradient-to-br from-amber-600/20 via-red-900/10 to-amber-950/30 blur-2xl"></div>
-          <div class="relative flex h-full w-full items-center justify-center rounded-full border-2 border-amber-800/30 bg-gradient-to-br from-amber-900/20 via-amber-950/10 to-[#0c0a09]">
-            <svg class="h-40 w-40 text-amber-600/20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.3">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
-              <line x1="9" y1="9" x2="9.01" y2="9"/>
-              <line x1="15" y1="9" x2="15.01" y2="9"/>
+          <div class="hero-pizza-glow absolute inset-0 rounded-full bg-red-100 blur-2xl"></div>
+          <div class="relative flex h-full w-full items-center justify-center rounded-full border-2 border-red-100 bg-gradient-to-br from-red-50 via-white to-white">
+            <svg class="hero-pizza-svg h-48 w-48 text-red-500/60" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+              <path d="M50 8 L86 78 Q50 92 14 78 Z" stroke-width="1.5" />
+              <path d="M14 78 Q50 92 86 78" stroke-width="3" stroke-linecap="round" />
+              <path d="M50 8 Q52 16 48 20" stroke-width="1.5" stroke-linecap="round" />
+              <circle cx="44" cy="52" r="4.5" stroke-width="1.5" />
+              <circle cx="64" cy="60" r="4" stroke-width="1.5" />
+              <circle cx="32" cy="66" r="3.5" stroke-width="1.5" />
+              <circle cx="56" cy="44" r="3" stroke-width="1.5" />
+              <circle cx="38" cy="44" r="2.5" stroke-width="1.5" />
+              <circle cx="66" cy="70" r="3" stroke-width="1.5" />
             </svg>
           </div>
         </div>
@@ -99,38 +119,108 @@ const menu = [
     </div>
   </section>
 
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/30 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Detalle del producto">
+    <div class="mx-4 w-full max-w-lg rounded-2xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/80 overflow-hidden">
+      <div class="relative h-64 sm:h-72 bg-gray-100">
+        <img id="modal-img" src="" alt="" class="js-zoom h-full w-full cursor-pointer object-cover" />
+      </div>
+      <div class="px-6 py-5">
+        <div class="flex items-start justify-between gap-4">
+          <div class="min-w-0">
+            <h3 id="modal-name" class="font-mono text-xl font-bold text-gray-900 truncate"></h3>
+            <p id="modal-desc" class="mt-1 text-sm text-gray-600"></p>
+          </div>
+          <p id="modal-price" class="font-mono text-lg font-bold text-red-600 flex-shrink-0"></p>
+        </div>
+        <div id="toppings-section" class="mt-5">
+          <p class="mb-3 font-mono text-xs font-bold text-gray-700 uppercase tracking-widest">Extras</p>
+          <div id="topping-list" class="grid grid-cols-2 gap-2"></div>
+        </div>
+        <div id="qty-section" class="mt-5 hidden">
+          <p class="mb-3 font-mono text-xs font-bold text-gray-700 uppercase tracking-widest">Cantidad</p>
+          <div class="flex items-center gap-4">
+            <button id="modal-qty-down" class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-all hover:border-red-300 hover:text-red-600 text-lg font-bold select-none" aria-label="Disminuir cantidad">-</button>
+            <span id="modal-qty" class="font-mono text-2xl font-bold text-gray-900 min-w-[2rem] text-center">1</span>
+            <button id="modal-qty-up" class="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-all hover:border-red-300 hover:text-red-600 text-lg font-bold select-none" aria-label="Aumentar cantidad">+</button>
+          </div>
+        </div>
+        <div class="mt-5 flex items-center justify-between border-t border-gray-100 pt-4">
+          <div>
+            <span class="font-mono text-xs text-gray-600">Total</span>
+            <p id="modal-total" class="font-mono text-2xl font-bold text-gray-900"></p>
+          </div>
+          <div class="flex gap-2">
+            <button id="modal-cancel" class="rounded-lg border border-gray-300 px-5 py-2.5 font-mono text-xs text-gray-600 transition-all hover:border-gray-400 hover:text-gray-900">Cancelar</button>
+            <button id="modal-confirm" class="rounded-lg bg-red-600 px-5 py-2.5 font-mono text-xs font-bold text-white transition-all hover:bg-red-700">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Lightbox -->
+  <div id="lightbox" class="fixed inset-0 z-[70] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm cursor-pointer" role="dialog" aria-modal="true" aria-label="Vista ampliada de la imagen">
+    <button id="lightbox-close" class="absolute top-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white transition-all hover:bg-white/30">
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <img id="lightbox-img" src="" alt="" class="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl cursor-default" />
+  </div>
+
+  <!-- Italian Flag Divider -->
+  <div class="flex h-1.5">
+    <div class="h-full w-1/3 bg-green-600"></div>
+    <div class="h-full w-1/3 bg-white border-x border-gray-200"></div>
+    <div class="h-full w-1/3 bg-red-600"></div>
+  </div>
+
   <!-- Menu -->
   <section id="menu" class="relative px-6 py-32">
     <div class="mx-auto max-w-5xl">
-      <div class="mb-4 text-center font-mono text-[11px] text-amber-400/70 uppercase tracking-[0.2em]">// nuestro menu</div>
-      <h2 class="mb-4 text-center text-4xl font-black tracking-tight sm:text-5xl">SABORES QUE <span class="text-amber-500">ENAMORAN</span></h2>
-      <p class="mb-16 text-center text-sm text-amber-300/50">Hace click en cada plato para agregarlo a tu pedido</p>
+      <div class="mb-4 text-center font-mono text-[11px] text-red-500 uppercase tracking-[0.2em] font-semibold">// nuestro menú</div>
+      <h2 class="mb-4 text-center text-4xl font-black tracking-tight sm:text-5xl text-gray-900">PIZZAS QUE <span class="text-red-600">ENAMORAN</span></h2>
+      <p class="mb-16 text-center text-sm text-gray-600">Elegí tu pizza y agregale los toppings que quieras</p>
       {menu.map((section, si) => (
         <div class="menu-section mb-16">
           <div class="menu-cat mb-8 flex items-center gap-4">
-            <div class="h-px flex-1 bg-gradient-to-r from-amber-900/50 to-transparent"></div>
-            <span class="font-mono text-base font-bold text-amber-400 uppercase tracking-widest">{section.cat}</span>
-            <div class="h-px flex-1 bg-gradient-to-l from-amber-900/50 to-transparent"></div>
+            <div class="h-px flex-1 bg-gradient-to-r from-gray-200 to-transparent"></div>
+            <span class="font-mono text-base font-bold text-gray-700 uppercase tracking-widest">{section.cat}</span>
+            <div class="h-px flex-1 bg-gradient-to-l from-gray-200 to-transparent"></div>
           </div>
-          <div class="grid gap-4 sm:grid-cols-2">
+          <div class="grid gap-5 sm:grid-cols-2">
             {section.items.map((item) => (
               <button
-                class="menu-item group relative overflow-hidden rounded-xl border border-amber-900/30 bg-[#181512]/60 p-5 text-left transition-all duration-300 hover:border-amber-700/40 hover:bg-[#1f1a16] hover:shadow-lg hover:shadow-amber-900/10"
+                class="menu-item group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-5 text-left transition-all duration-300 hover:border-red-200 hover:shadow-lg hover:shadow-red-100/50"
                 data-name={item.n}
                 data-price={item.p.toFixed(2)}
+                data-img={item.img}
+                data-desc={item.d}
+                data-has-extras={item.hasExtras}
               >
-                <div class="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-amber-600/5 transition-all duration-500 group-hover:scale-[3] group-hover:bg-amber-600/10"></div>
-                <div class="relative z-10 flex items-start justify-between gap-4">
-                  <div class="flex-1">
-                    <span class="font-mono text-base font-bold text-amber-100 transition-colors group-hover:text-amber-400">{item.n}</span>
-                    <p class="mt-1 text-xs text-amber-300/60">{item.d}</p>
-                  </div>
-                  <div class="flex items-start gap-3">
-                    <div class="text-right">
-                      <div class="font-mono text-sm text-amber-500">$ {item.p.toFixed(2)}</div>
-                      <div class="js-bs-price font-mono text-[10px] text-amber-400/50 hidden">Bs. --</div>
+                <div class="relative z-10 flex items-center gap-5">
+                  <img
+                    src={item.img}
+                    alt={item.n}
+                    loading="lazy"
+                    width="112"
+                    height="112"
+                    class="js-zoom h-28 w-28 flex-shrink-0 cursor-pointer rounded-xl border border-gray-100 bg-gray-50 object-cover transition-transform duration-200 hover:scale-105"
+                    onerror="this.style.display='none'"
+                  />
+                  <div class="flex flex-1 flex-col justify-between min-h-[7rem]">
+                    <div>
+                      <span class="font-mono text-base font-bold text-gray-900 transition-colors group-hover:text-red-600 truncate block">{item.n}</span>
+                      <p class="mt-1 text-sm text-gray-600 leading-relaxed line-clamp-2">{item.d}</p>
                     </div>
-                    <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-amber-700/40 bg-amber-900/20 text-sm text-amber-500 transition-all group-hover:border-amber-500/60 group-hover:bg-amber-500/20 group-hover:text-amber-400 group-active:scale-90">+</div>
+                    <div class="mt-auto flex items-center justify-between gap-2">
+                      <div>
+                        <div class="font-mono text-lg font-bold text-red-600">$ {item.p.toFixed(2)}</div>
+                        <div class="js-bs-price font-mono text-xs text-gray-600 hidden">Bs. --</div>
+                      </div>
+                      <div class="js-add-direct flex h-9 w-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-600 text-white text-sm font-bold transition-all hover:bg-red-700 active:scale-90 shadow-sm" aria-label="Agregar directo">
+                        <svg class="h-4 w-4 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </button>
@@ -142,83 +232,84 @@ const menu = [
   </section>
 
   <!-- Cart Floating -->
-  <div id="cart-floating" class="fixed bottom-4 right-4 z-50 hidden w-80 translate-y-4 rounded-xl border border-amber-800/40 bg-[#181512] shadow-2xl shadow-amber-950/50 backdrop-blur-md opacity-0">
-    <div class="flex items-center justify-between border-b border-amber-900/30 px-4 py-3">
+  <div id="cart-floating" class="fixed bottom-4 right-4 z-50 hidden w-80 translate-y-4 rounded-xl border border-gray-200 bg-white shadow-2xl shadow-gray-200/80 backdrop-blur-md opacity-0">
+    <div class="flex items-center justify-between border-b border-gray-100 px-4 py-3">
       <div>
-        <h3 class="font-mono text-sm font-bold text-amber-400">TU PEDIDO</h3>
-        <p id="cart-item-count" class="font-mono text-[10px] text-amber-300/50">0 items</p>
+        <h3 class="font-mono text-sm font-bold text-gray-900">TU PEDIDO</h3>
+        <p id="cart-item-count" class="font-mono text-xs text-gray-600">0 items</p>
       </div>
-      <button id="close-cart-btn" class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-800/40 text-[10px] text-amber-400/80 transition-all hover:border-amber-600/60 hover:text-amber-400">
+      <button id="close-cart-btn" class="flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 text-xs text-gray-600 transition-all hover:border-gray-400 hover:text-gray-700">
         <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
     </div>
-    <div id="cart-items" class="max-h-48 overflow-y-auto px-4 py-3">
-      <div id="cart-empty" class="flex flex-col items-center justify-center py-6 text-center">
-        <p class="font-mono text-xs text-amber-300/50">Tu carrito esta vacio</p>
-        <p class="mt-1 font-mono text-[10px] text-amber-300/40">Agrega platos del menu</p>
+    <div id="cart-items" class="max-h-[18rem] overflow-y-auto px-4 py-3">
+      <div id="cart-empty" class="flex flex-col items-center justify-center py-8 text-center">
+        <p class="font-mono text-sm text-gray-600">Tu carrito está vacío</p>
+        <p class="mt-1 font-mono text-xs text-gray-600">Agregá pizzas del menú</p>
       </div>
       <div id="cart-list" class="hidden space-y-2"></div>
     </div>
-    <div id="cart-footer" class="hidden border-t border-amber-900/30 px-4 py-3">
-      <div class="mb-2 space-y-1">
-        <div class="flex items-center justify-between font-mono text-xs"><span class="text-amber-300/80">Subtotal</span><span id="cart-subtotal" class="text-amber-100">$0.00</span></div>
-        <div id="cart-tax-row" class="flex items-center justify-between font-mono text-xs"><span class="text-amber-300/80">IVA (16%)</span><span id="cart-tax" class="text-amber-200/80">$0.00</span></div>
-        <div class="border-t border-amber-900/20 pt-1"></div>
-        <div class="flex items-center justify-between font-mono text-sm font-bold"><span class="text-amber-400">Total</span><span id="cart-total" class="text-amber-400">$0.00</span></div>
+    <div id="cart-footer" class="hidden border-t border-gray-100 px-4 py-3">
+      <div class="mb-3 space-y-1.5">
+        <div class="flex items-center justify-between font-mono text-sm"><span class="text-gray-600">Subtotal</span><span id="cart-subtotal" class="text-gray-900 font-semibold">$0.00</span></div>
+        <div id="cart-tax-row" class="flex items-center justify-between font-mono text-sm"><span class="text-gray-600">IVA (16%)</span><span id="cart-tax" class="text-gray-600">$0.00</span></div>
+        <div class="border-t border-gray-100 pt-1.5"></div>
+        <div class="flex items-center justify-between font-mono text-base font-bold"><span class="text-gray-900">Total</span><span id="cart-total" class="text-red-600">$0.00</span></div>
       </div>
-
-      <!-- Currency selector -->
-      <div class="mb-2 flex gap-1">
-        <label class="js-curr-opt flex-1 cursor-pointer rounded border border-amber-700/40 px-2 py-1.5 text-center font-mono text-xs text-amber-300/70 transition-all hover:border-amber-500/60 has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-400" data-curr="usd">
-          <input type="radio" name="currency" value="usd" class="hidden"> Divisas
-        </label>
-        <label class="js-curr-opt flex-1 cursor-pointer rounded border border-amber-700/40 px-2 py-1.5 text-center font-mono text-xs text-amber-300/70 transition-all hover:border-amber-500/60 has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-400" data-curr="bs">
-          <input type="radio" name="currency" value="bs" class="hidden"> Bs
-        </label>
+      <div id="currency-switch" class="relative mb-3 flex cursor-pointer rounded-lg border border-gray-200 bg-gray-100 p-0.5 select-none overflow-hidden">
+        <div id="curr-slider" class="absolute top-0.5 bottom-0.5 w-1/2 rounded-md bg-white shadow-sm transition-transform duration-200 ease-out"></div>
+        <span class="relative z-10 flex-1 px-3 py-1.5 text-center font-mono text-xs font-bold" data-curr="usd">$ USD</span>
+        <span class="relative z-10 flex-1 px-3 py-1.5 text-center font-mono text-xs font-bold" data-curr="bs">Bs.</span>
       </div>
-
-      <!-- Payment methods -->
-      <div id="pay-methods" class="mb-2 flex flex-wrap gap-1"></div>
-
-      <a id="cart-wa-btn" href={"https://wa.me/" + r.wa + "?text="} target="_blank" class="flex w-full items-center justify-center gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-2.5 font-mono text-xs font-bold text-amber-400 transition-all hover:bg-amber-500/20">
-        <svg class="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <div id="pay-methods" class="mb-2 flex flex-nowrap gap-1 overflow-x-auto"></div>
+      <a id="cart-wa-btn" href={"https://wa.me/" + r.wa + "?text="} target="_blank" class="flex w-full items-center justify-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 font-mono text-sm font-bold text-white transition-all hover:bg-red-700">
+        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span>WhatsApp</span>
       </a>
     </div>
   </div>
 
+
+
   <!-- Toast -->
-  <div id="toast" class="fixed top-24 right-6 z-50 hidden translate-x-full rounded-lg border border-amber-800/40 bg-[#181512] px-5 py-3 shadow-2xl shadow-amber-950/30 backdrop-blur-md">
+  <div id="toast" class="fixed top-24 right-6 z-50 hidden translate-x-full rounded-lg border border-green-200 bg-white px-5 py-3 shadow-lg shadow-green-100/50 backdrop-blur-md">
     <div class="flex items-center gap-3">
-      <svg class="h-5 w-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-      <div><p id="toast-msg" class="font-mono text-sm text-amber-100">Item agregado</p></div>
+      <svg class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div><p id="toast-msg" class="font-mono text-sm text-gray-800">Item agregado</p></div>
     </div>
   </div>
 
+  <!-- Italian Flag Divider -->
+  <div class="flex h-1.5">
+    <div class="h-full w-1/3 bg-green-600"></div>
+    <div class="h-full w-1/3 bg-white border-x border-gray-200"></div>
+    <div class="h-full w-1/3 bg-red-600"></div>
+  </div>
+
   <!-- Reviews -->
-  <section id="resenas" class="border-t border-amber-900/20 px-6 py-32">
+  <section id="resenas" class="border-t border-gray-100 bg-gray-50/50 px-6 py-32">
     <div class="mx-auto max-w-4xl">
-      <div class="mb-4 text-center font-mono text-[11px] text-amber-400/70 uppercase tracking-[0.2em]">// resenas</div>
-      <h2 class="mb-16 text-center text-4xl font-black tracking-tight sm:text-5xl">LO QUE DICEN <span class="text-amber-500">NUESTROS COMENSALES</span></h2>
+      <div class="mb-4 text-center font-mono text-[11px] text-red-500 uppercase tracking-[0.2em] font-semibold">// reseñas</div>
+      <h2 class="mb-16 text-center text-4xl font-black tracking-tight sm:text-5xl text-gray-900">LO QUE DICEN <span class="text-red-600">NUESTROS COMENSALES</span></h2>
       <div class="grid gap-6 md:grid-cols-3">
         {[0,1,2].map((i) => {
           const reviews = [
-            { name: "Maria G.", text: "El pabellon es el mejor que he probado fuera de Venezuela. Super recomendado.", rating: 5 },
-            { name: "Carlos L.", text: "La parrilla mixta es espectacular. Volvemos cada semana.", rating: 5 },
-            { name: "Ana R.", text: "Los tequenos son imperdibles. El servicio excelente.", rating: 4 },
+            { name: "María G.", text: "La Margherita es idéntica a la de Nápoles. La masa es espectacular.", rating: 5 },
+            { name: "Carlos L.", text: "Las pizzas especiales son increíbles. La BBQ Chicken es mi favorita.", rating: 5 },
+            { name: "Ana R.", text: "Piden con extra de pepperoni y siempre queda perfecta. El tiramisú es imperdible.", rating: 4 },
           ]
           const rev = reviews[i]
           return (
-            <div class="review-card group rounded-xl border border-amber-900/30 bg-[#181512]/60 p-6 transition-all duration-300 hover:border-amber-700/40 hover:bg-[#1f1a16]">
+            <div class="review-card group rounded-xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:border-red-200 hover:shadow-lg hover:shadow-red-100/50">
               <div class="mb-4 flex gap-1">
                 {Array.from({ length: 5 }, (_, j) => (
-                  <svg key={j} class={"h-4 w-4 transition-all duration-300 " + (j < rev.rating ? "text-amber-500" : "text-amber-700/40")} fill="currentColor" viewBox="0 0 20 20">
+                  <svg key={j} class={"h-4 w-4 transition-all duration-300 " + (j < rev.rating ? "text-red-500" : "text-gray-200")} fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                   </svg>
                 ))}
               </div>
-              <p class="mb-4 text-sm leading-relaxed text-amber-200/80">{rev.text}</p>
-              <span class="font-mono text-xs text-amber-300/50">-- {rev.name}</span>
+              <p class="mb-4 text-sm leading-relaxed text-gray-700">{rev.text}</p>
+              <span class="font-mono text-xs text-gray-600">-- {rev.name}</span>
             </div>
           )
         })}
@@ -227,44 +318,59 @@ const menu = [
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-amber-900/20 px-6 py-16">
+  <footer class="border-t border-gray-100 bg-gray-50 px-6 py-16">
     <div class="mx-auto max-w-5xl">
       <div class="grid gap-10 md:grid-cols-3">
         <div>
-          <span class="font-mono text-lg font-bold tracking-wider text-amber-500">FOGON</span>
-          <p class="mt-3 text-xs text-amber-300/50 leading-relaxed">{r.slogan}</p>
+          <div class="flex items-center gap-2 font-mono text-lg font-bold tracking-wider text-red-600">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+              <path d="M12 3 L21 19 Q12 22 3 19 Z" />
+              <path d="M3 19 Q12 22 21 19" stroke-width="2.5" stroke-linecap="round" />
+              <circle cx="10" cy="13" r="2" stroke-width="1" />
+              <circle cx="15" cy="15" r="1.8" stroke-width="1" />
+              <circle cx="8" cy="17.5" r="1.5" stroke-width="1" />
+              <circle cx="13.5" cy="11" r="1.3" stroke-width="1" />
+            </svg>
+            ROMA
+          </div>
+          <p class="mt-3 text-sm text-gray-600 leading-relaxed">{r.slogan}</p>
         </div>
         <div>
-          <h4 class="mb-4 font-mono text-sm font-bold text-amber-400 uppercase tracking-widest">Horarios</h4>
-          <p class="text-xs text-amber-300/60">{r.schedule}</p>
-          <p class="mt-2 text-xs text-amber-300/60">{r.address}</p>
+          <h4 class="mb-4 font-mono text-sm font-bold text-gray-700 uppercase tracking-widest">Horarios</h4>
+          <p class="text-sm text-gray-600">{r.schedule}</p>
+          <p class="mt-2 text-sm text-gray-600">{r.address}</p>
         </div>
         <div>
-          <h4 class="mb-4 font-mono text-sm font-bold text-amber-400 uppercase tracking-widest">Redes</h4>
+          <h4 class="mb-4 font-mono text-sm font-bold text-gray-700 uppercase tracking-widest">Redes</h4>
           <div class="flex gap-3">
-            <a href={"https://wa.me/" + r.wa} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="WhatsApp">
+            <a href={"https://wa.me/" + r.wa} target="_blank" class="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 text-gray-600 transition-all hover:border-red-300 hover:text-red-600 hover:bg-red-50" aria-label="WhatsApp">
               <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
-            <a href={"https://instagram.com/" + r.ig.replace('@','')} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="Instagram">
+            <a href={"https://instagram.com/" + r.ig.replace('@','')} target="_blank" class="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 text-gray-600 transition-all hover:border-red-300 hover:text-red-600 hover:bg-red-50" aria-label="Instagram">
               <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
-            <a href={"https://facebook.com/" + r.fb} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="Facebook">
+            <a href={"https://facebook.com/" + r.fb} target="_blank" class="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 text-gray-600 transition-all hover:border-red-300 hover:text-red-600 hover:bg-red-50" aria-label="Facebook">
               <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
             </a>
-            <a href={"https://x.com/" + r.x.replace('@','')} target="_blank" class="flex h-8 w-8 items-center justify-center rounded-lg border border-amber-700/40 text-amber-400/80 transition-all hover:border-amber-500/60 hover:text-amber-400 hover:bg-amber-500/10" aria-label="X">
+            <a href={"https://x.com/" + r.x.replace('@','')} target="_blank" class="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-300 text-gray-600 transition-all hover:border-red-300 hover:text-red-600 hover:bg-red-50" aria-label="X">
               <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
           </div>
         </div>
       </div>
-      <div class="mt-12 border-t border-amber-900/20 pt-8 text-center space-y-2">
-        <p class="font-mono text-[10px] text-amber-300/30">Demo - Cryfield.dev</p>
-        <p class="font-mono text-[10px] text-amber-400/50">Hecho por <a href="https://cryfield.dev" target="_blank" class="text-amber-500 hover:text-amber-400 transition-colors">Cryfield.dev</a> - Web para tu negocio</p>
+      <div class="mt-12 border-t border-gray-200 pt-8 text-center space-y-2">
+        <p class="font-mono text-xs text-gray-600">Demo - Cryfield.dev</p>
+        <p class="font-mono text-xs text-gray-600">Hecho por <a href="https://cryfield.dev" target="_blank" class="text-red-600 hover:text-red-700 transition-colors">Cryfield.dev</a> - Web para tu negocio</p>
       </div>
     </div>
   </footer>
 
-  <a href="/plantillas" class="fixed top-20 left-4 z-40 rounded-lg border border-amber-800/30 bg-[#181512]/80 px-3 py-2 font-mono text-[11px] text-amber-400/80 backdrop-blur-sm transition-all hover:text-amber-400">&lt;- Volver</a>
+  <a href="/plantillas" class="fixed top-20 left-4 z-40 rounded-lg border border-gray-300 bg-white/80 px-3 py-2 font-mono text-xs text-gray-600 backdrop-blur-sm transition-all hover:text-red-600 hover:border-red-300">&lt;- Volver</a>
+
+  <!-- Scroll to top -->
+  <button id="scroll-top" class="fixed bottom-6 right-6 z-40 hidden h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white shadow-lg shadow-gray-200/80 transition-all hover:border-red-200 hover:bg-red-50 hover:text-red-600 text-gray-600">
+    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19V5m0 0l-7 7m7-7l7 7"/></svg>
+  </button>
 </section>
 
 <style>
@@ -276,6 +382,14 @@ const menu = [
     from { opacity: 0; }
     to { opacity: 1; }
   }
+  @keyframes pizzaFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+  }
+  @keyframes pizzaGlow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.25; transform: scale(1.05); }
+  }
   .menu-item { animation: fadeInUp 0.4s both; }
   .menu-item:nth-child(1) { animation-delay: 0.05s; }
   .menu-item:nth-child(2) { animation-delay: 0.1s; }
@@ -285,28 +399,100 @@ const menu = [
   .review-card:nth-child(1) { animation-delay: 0.05s; }
   .review-card:nth-child(2) { animation-delay: 0.1s; }
   .review-card:nth-child(3) { animation-delay: 0.15s; }
+
+  .hero-pizza-svg {
+    animation: pizzaFloat 4s ease-in-out infinite;
+  }
+  .hero-pizza-svg circle,
+  .hero-pizza-svg path {
+    transition: all 0.3s ease;
+  }
+  .hero-pizza-glow {
+    animation: pizzaGlow 4s ease-in-out infinite;
+  }
+
+  .bg-checkered {
+    background-image:
+      linear-gradient(45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(0,0,0,0.03) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(0,0,0,0.03) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(0,0,0,0.03) 75%);
+    background-size: 24px 24px;
+  }
+
+  #lightbox {
+    transition: opacity 0.2s ease;
+  }
+  #lightbox.hidden {
+    opacity: 0;
+  }
+
+  #scroll-top {
+    transition: all 0.3s ease;
+  }
+  #scroll-top.show {
+    display: flex;
+  }
+
+  #open-cart-btn.animate-ripple {
+    animation: cartRipple 0.6s ease-out;
+  }
+  @keyframes cartRipple {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5), 0 0 0 0 rgba(220, 38, 38, 0.3); }
+    50% { box-shadow: 0 0 0 16px rgba(220, 38, 38, 0), 0 0 0 32px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0), 0 0 0 0 rgba(220, 38, 38, 0); }
+  }
+
+  .section-stamp {
+    position: relative;
+    display: inline-block;
+  }
+  .section-stamp::before,
+  .section-stamp::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 3rem;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e5e7eb);
+  }
+  .section-stamp::before { right: 100%; margin-right: 0.75rem; }
+  .section-stamp::after { left: 100%; margin-left: 0.75rem; }
 </style>
 
 <script>
   import gsap from 'gsap'
 
-  // Config (must match frontmatter config above)
-  const BS_RATE = 52.50       // 0 = auto from API fallback
+  const BS_RATE = 52.50
   const DEFAULT_CURRENCY = 'usd'
   const IVA_ON = true
   const PAY_METHODS = {
     usd: ['Zelle', 'Efectivo USD', 'USDT', 'PayPal'],
-    bs: ['Pago movil', 'Transferencia'],
+    bs: ['Pago móvil', 'Transferencia'],
   }
+
+  const TOPPINGS = [
+    { n: 'Queso extra', p: 1.50 },
+    { n: 'Pepperoni', p: 1.00 },
+    { n: 'Champiñones', p: 1.00 },
+    { n: 'Aceitunas', p: 0.75 },
+    { n: 'Cebolla', p: 0.75 },
+    { n: 'Pimientos', p: 0.75 },
+    { n: 'Jamón', p: 1.50 },
+    { n: 'Anchoas', p: 2.00 },
+  ]
 
   const state = {
     items: [],
-    apiRate: null,             // fallback from API if BS_RATE is 0
+    apiRate: null,
     currency: DEFAULT_CURRENCY,
     payment: null,
+    modalItem: null,
+    modalToppings: [],
+    modalQty: 1,
+    modalHasExtras: false,
   }
 
-  // --- API (rate fallback if BS_RATE is 0) ---
   async function fetchRate() {
     try {
       const res = await fetch('https://ve.dolarapi.com/v1/dolares/oficial')
@@ -330,26 +516,18 @@ const menu = [
     })
   }
 
-  // --- Helpers ---
   function getRate() {
     if (state.currency === 'usd') return 1
     return state.apiRate || (BS_RATE > 0 ? BS_RATE : 1)
   }
 
-  function getSymbol() {
-    return state.currency === 'usd' ? '$' : 'Bs.'
-  }
-
-  function convert(usdPrice) {
-    return usdPrice * getRate()
-  }
+  function convert(usdPrice) { return usdPrice * getRate() }
 
   function formatPrice(val) {
     if (state.currency === 'usd') return '$ ' + val.toFixed(2)
     return 'Bs. ' + val.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   }
 
-  // --- GSAP hero ---
   gsap.timeline({ defaults: { ease: 'power3.out' } })
     .from('.hero-badge', { y: 20, opacity: 0, duration: 0.5 })
     .from('.hero-title', { y: 40, opacity: 0, duration: 0.7 }, '-=0.2')
@@ -358,7 +536,6 @@ const menu = [
     .from('.hero-cta', { y: 20, opacity: 0, duration: 0.5 }, '-=0.2')
     .from('.hero-image', { scale: 0.8, opacity: 0, duration: 0.8 }, '-=0.6')
 
-  // --- DOM refs ---
   const cartFloating = document.getElementById('cart-floating')
   const openBtn = document.getElementById('open-cart-btn')
   const closeBtn = document.getElementById('close-cart-btn')
@@ -375,7 +552,20 @@ const menu = [
   const toastMsg = document.getElementById('toast-msg')
   const cartWaBtn = document.getElementById('cart-wa-btn')
   const payMethodsEl = document.getElementById('pay-methods')
-
+  const modal = document.getElementById('detail-modal')
+  const modalImg = document.getElementById('modal-img')
+  const modalName = document.getElementById('modal-name')
+  const modalDesc = document.getElementById('modal-desc')
+  const modalPrice = document.getElementById('modal-price')
+  const modalTotal = document.getElementById('modal-total')
+  const modalList = document.getElementById('topping-list')
+  const toppingsSection = document.getElementById('toppings-section')
+  const qtySection = document.getElementById('qty-section')
+  const modalQty = document.getElementById('modal-qty')
+  const modalQtyDown = document.getElementById('modal-qty-down')
+  const modalQtyUp = document.getElementById('modal-qty-up')
+  const modalCancel = document.getElementById('modal-cancel')
+  const modalConfirm = document.getElementById('modal-confirm')
   let toastTl = null
   let cartOpen = false
 
@@ -409,33 +599,287 @@ const menu = [
       .to(toast, { x: '100%', opacity: 0, duration: 0.3, ease: 'power2.in', onComplete: () => { toast.classList.add('hidden') } })
   }
 
-  // --- Currency selector ---
-  document.querySelectorAll('.js-curr-opt').forEach(label => {
-    const radio = label.querySelector('input')
-    if (radio.value === state.currency) radio.checked = true
-    radio.addEventListener('change', () => {
-      if (!radio.checked) return
-      state.currency = radio.value
-      state.payment = null
-      renderPayMethods()
+  // --- Detail Modal ---
+  let activeTrap = null
+
+  function focusTrap(element) {
+    const focusable = element.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    )
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+
+    function handler(e) {
+      if (e.key !== 'Tab') return
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    activeTrap = { element, handler, first, last }
+    document.addEventListener('keydown', handler)
+    if (first) first.focus()
+  }
+
+  function releaseTrap() {
+    if (activeTrap) {
+      document.removeEventListener('keydown', activeTrap.handler)
+      activeTrap = null
+    }
+  }
+
+  function openDetailModal(name, price, img, desc, hasExtras) {
+    state.modalItem = { name, basePrice: price }
+    state.modalToppings = []
+    state.modalQty = 1
+    state.modalHasExtras = hasExtras
+
+    modalImg.src = img
+    modalImg.alt = name
+    modalName.textContent = name
+    modalDesc.textContent = desc
+    modalPrice.textContent = '$ ' + price.toFixed(2)
+
+    if (hasExtras) {
+      toppingsSection.classList.remove('hidden')
+      qtySection.classList.add('hidden')
+      renderModalToppings()
+    } else {
+      toppingsSection.classList.add('hidden')
+      qtySection.classList.remove('hidden')
+      modalQty.textContent = '1'
+    }
+
+    updateModalTotal()
+    modal.classList.remove('hidden')
+    gsap.from(modal.children[0], { scale: 0.95, opacity: 0, duration: 0.2, ease: 'power2.out' })
+    focusTrap(modal)
+  }
+
+  function closeModal() {
+    releaseTrap()
+    modal.classList.add('hidden')
+    state.modalItem = null
+    state.modalToppings = []
+    state.modalQty = 1
+  }
+
+  function renderModalToppings() {
+    modalList.innerHTML = TOPPINGS.map((t, i) => `
+      <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 transition-all hover:border-red-300 hover:bg-red-50/50">
+        <input type="checkbox" class="topping-cb hidden" data-index="${i}" />
+        <span class="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-md border-2 border-gray-300 text-xs font-bold text-transparent transition-all">&#10003;</span>
+        <div class="flex-1">
+          <span class="font-mono text-sm text-gray-800">${t.n}</span>
+          <span class="ml-1.5 font-mono text-xs text-red-600 font-medium">+$${t.p.toFixed(2)}</span>
+        </div>
+      </label>
+    `).join('')
+
+    modalList.querySelectorAll('.topping-cb').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const idx = parseInt(cb.dataset.index)
+        const label = cb.closest('label')
+        const check = label.querySelector('span:first-of-type')
+        if (cb.checked) {
+          state.modalToppings.push(idx)
+          check.classList.add('bg-red-600', 'border-red-600', 'text-white')
+          check.classList.remove('border-gray-300', 'text-transparent')
+          label.classList.add('border-red-200', 'bg-red-50')
+        } else {
+          state.modalToppings = state.modalToppings.filter(i => i !== idx)
+          check.classList.remove('bg-red-600', 'border-red-600', 'text-white')
+          check.classList.add('border-gray-300', 'text-transparent')
+          label.classList.remove('border-red-200', 'bg-red-50')
+        }
+        updateModalTotal()
+      })
+    })
+  }
+
+  function getModalToppingTotal() {
+    return state.modalToppings.reduce((sum, i) => sum + TOPPINGS[i].p, 0)
+  }
+
+  function updateModalTotal() {
+    if (state.modalHasExtras) {
+      const extra = getModalToppingTotal()
+      const total = state.modalItem.basePrice + extra
+      modalTotal.textContent = '$ ' + total.toFixed(2)
+    } else {
+      const total = state.modalItem.basePrice * state.modalQty
+      modalTotal.textContent = '$ ' + total.toFixed(2)
+    }
+  }
+
+  function flyToCart(fromEl) {
+    // ── SVG del volador ── editar aquí para cambiar el ícono ──
+    const FLYER_SVG = `
+      <svg viewBox="0 0 100 100" fill="#dc2626" stroke="#991b1b" stroke-width="2" stroke-linejoin="round">
+        <path d="M50 8 L86 78 Q50 92 14 78 Z" stroke-width="1.5" />
+        <path d="M14 78 Q50 92 86 78" stroke-width="3" stroke-linecap="round" />
+        <path d="M50 8 Q52 16 48 20" stroke-width="1.5" stroke-linecap="round" />
+        <circle cx="44" cy="52" r="4.5" stroke-width="1.5" />
+        <circle cx="64" cy="60" r="4" stroke-width="1.5" />
+        <circle cx="32" cy="66" r="3.5" stroke-width="1.5" />
+        <circle cx="56" cy="44" r="3" stroke-width="1.5" />
+        <circle cx="38" cy="44" r="2.5" stroke-width="1.5" />
+        <circle cx="66" cy="70" r="3" stroke-width="1.5" />
+      </svg>`
+    // ────────────────────────────────────────────────────────
+
+    if (!fromEl) return
+    const from = fromEl.getBoundingClientRect()
+    const to = openBtn.getBoundingClientRect()
+    const size = 40
+
+    const flyer = document.createElement('div')
+    flyer.className = 'fixed z-[100] pointer-events-none flex items-center justify-center'
+    flyer.style.left = (from.left + from.width / 2 - size / 2) + 'px'
+    flyer.style.top = (from.top + from.height / 2 - size / 2) + 'px'
+    flyer.style.width = size + 'px'
+    flyer.style.height = size + 'px'
+    flyer.innerHTML = FLYER_SVG.trim()
+    flyer.querySelector('svg').classList.add('w-full', 'h-full', 'drop-shadow-xl')
+    document.body.appendChild(flyer)
+
+    const midX = (from.left + from.width / 2 + to.left + to.width / 2) / 2 - size / 2
+    const midY = Math.max(from.top, to.top) + 100 - size / 2
+
+    gsap.set(flyer, { scale: 1, opacity: 1 })
+    gsap.to(flyer, {
+      left: midX,
+      top: midY,
+      scale: 0.8,
+      duration: 0.3,
+      ease: 'power2.out',
+      onComplete: () => {
+        gsap.to(flyer, {
+          left: to.left + to.width / 2 - size / 2,
+          top: to.top + to.height / 2 - size / 2,
+          scale: 0.3,
+          opacity: 0.4,
+          duration: 0.35,
+          ease: 'power3.in',
+          onComplete: () => {
+            flyer.remove()
+            openBtn.classList.remove('animate-ripple')
+            void openBtn.offsetWidth
+            openBtn.classList.add('animate-ripple')
+            gsap.fromTo(openBtn, { scale: 0.92 }, { scale: 1, duration: 0.5, ease: 'power2.out', overwrite: true })
+            setTimeout(() => openBtn.classList.remove('animate-ripple'), 700)
+          }
+        })
+      }
+    })
+  }
+
+  function addToCart(name, basePrice, price, qty, toppings, fromEl) {
+    const existing = state.items.find(item =>
+      item.name === name &&
+      item.toppings.join('|') === (toppings || []).join('|')
+    )
+    if (existing) {
+      existing.qty += qty
+    } else {
+      state.items.push({ name, basePrice, price, qty, toppings: toppings || [] })
+    }
+    if (fromEl) flyToCart(fromEl)
+  }
+
+  modalCancel.addEventListener('click', closeModal)
+
+  modalQtyDown.addEventListener('click', () => {
+    if (state.modalQty > 1) {
+      state.modalQty--
+      modalQty.textContent = state.modalQty
+      updateModalTotal()
+    }
+  })
+
+  modalQtyUp.addEventListener('click', () => {
+    state.modalQty++
+    modalQty.textContent = state.modalQty
+    updateModalTotal()
+  })
+
+  modalConfirm.addEventListener('click', () => {
+    if (!state.modalItem) return
+
+    if (state.modalHasExtras) {
+      const extra = getModalToppingTotal()
+      const total = state.modalItem.basePrice + extra
+      const selectedToppings = state.modalToppings.map(i => TOPPINGS[i].n)
+      addToCart(state.modalItem.name, state.modalItem.basePrice, total, 1, selectedToppings, modalImg)
+    } else {
+      const qty = state.modalQty
+      addToCart(state.modalItem.name, state.modalItem.basePrice, state.modalItem.basePrice, qty, [], modalImg)
+    }
+
+    const wasEmpty = state.items.length === 1 && state.items[0].qty === 1
+    renderCart()
+    closeModal()
+    if (wasEmpty) openCart()
+    showToast('Agregado: ' + state.modalItem.name)
+  })
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal()
+  })
+
+  // --- Direct add (+ button) ---
+  document.querySelectorAll('.js-add-direct').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation()
+      const btn = el.closest('.menu-item')
+      const name = btn.dataset.name
+      const price = parseFloat(btn.dataset.price)
+      addToCart(name, price, price, 1, [], el)
+      const wasEmpty = state.items.length === 1 && state.items[0].qty === 1
       renderCart()
+      if (wasEmpty) openCart()
+      showToast('Agregado: ' + name)
     })
   })
+
+  // --- Currency ---
+  function selectCurrency(curr) {
+    state.currency = curr
+    state.payment = null
+    const slider = document.getElementById('curr-slider')
+    slider.style.transform = curr === 'bs' ? 'translateX(100%)' : 'translateX(0)'
+    document.querySelectorAll('#currency-switch span').forEach(el => {
+      el.classList.toggle('text-red-600', el.dataset.curr === curr)
+      el.classList.toggle('text-gray-600', el.dataset.curr !== curr)
+    })
+    renderPayMethods()
+    renderCart()
+  }
+
+  document.querySelectorAll('#currency-switch span').forEach(el => {
+    el.addEventListener('click', () => selectCurrency(el.dataset.curr))
+  })
+  selectCurrency(state.currency)
 
   // --- Payment methods ---
   function renderPayMethods() {
     const methods = PAY_METHODS[state.currency] || []
-    payMethodsEl.innerHTML = methods.map(m => `
-      <label class="js-pay-opt cursor-pointer rounded border border-amber-700/40 px-2.5 py-1 font-mono text-[10px] text-amber-300/70 transition-all hover:border-amber-500/60 has-[:checked]:border-amber-500 has-[:checked]:bg-amber-500/15 has-[:checked]:text-amber-400">
-        <input type="radio" name="payment" value="${m}" class="hidden"> ${m}
-      </label>
-    `).join('')
-    payMethodsEl.querySelectorAll('.js-pay-opt').forEach(label => {
-      const radio = label.querySelector('input')
-      if (state.payment && radio.value === state.payment) radio.checked = true
-      radio.addEventListener('change', () => {
-        if (!radio.checked) return
-        state.payment = radio.value
+    payMethodsEl.innerHTML = methods.map(m => {
+      const active = state.payment === m
+      return `<button class="js-pay-opt flex-shrink-0 rounded-full border px-2 py-1 font-mono text-[11px] font-bold transition-all ${active ? 'bg-red-600 text-white border-red-600 shadow-sm' : 'text-gray-600 border-gray-200 hover:border-red-300 hover:text-red-600'}">${m}</button>`
+    }).join('')
+    payMethodsEl.querySelectorAll('.js-pay-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.payment = btn.textContent.trim()
+        renderPayMethods()
       })
     })
   }
@@ -456,25 +900,23 @@ const menu = [
 
     cartList.innerHTML = state.items.map((item, i) => {
       const lineTotal = convert(item.price * item.qty)
-      const rate = getRate()
+      const toppingsHtml = item.toppings && item.toppings.length
+        ? item.toppings.map(t => `<span class="text-xs text-red-500/70">+ ${t}</span>`).join('')
+        : ''
       return `
-      <div class="cart-item flex items-center gap-2 rounded-lg border border-amber-800/20 bg-[#181512]/60 px-3 py-2">
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center justify-between">
-            <span class="font-mono text-xs font-bold text-amber-100 truncate">${item.name}</span>
-            <button class="js-remove-item text-amber-600/50 hover:text-amber-400 transition-colors flex-shrink-0" data-index="${i}">
-              <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-            </button>
-          </div>
-          <div class="mt-1 flex items-center gap-2">
-            <button class="js-qty-down flex h-5 w-5 items-center justify-center rounded-full border border-amber-700/40 text-[10px] text-amber-400/80 transition-all hover:border-amber-600/60 hover:text-amber-400" data-index="${i}">-</button>
-            <span class="font-mono text-xs text-amber-400 min-w-[1rem] text-center font-bold">${item.qty}</span>
-            <button class="js-qty-up flex h-5 w-5 items-center justify-center rounded-full border border-amber-700/40 text-[10px] text-amber-400/80 transition-all hover:border-amber-600/60 hover:text-amber-400" data-index="${i}">+</button>
-            <span class="ml-auto font-mono text-sm text-amber-500 font-bold">${formatPrice(lineTotal)}</span>
-          </div>
-          <div class="mt-0.5 font-mono text-[10px] text-amber-400/60">
-            ${state.currency === 'usd' ? (rate > 0 ? 'Bs. ' + (item.price * item.qty * rate).toLocaleString('es-VE', { minimumFractionDigits: 2 }) : '') : '$ ' + (item.price * item.qty).toFixed(2)}
-          </div>
+      <div class="cart-item rounded-lg border border-gray-100 bg-gray-50/50 px-3 py-2.5">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-sm font-bold text-gray-800 truncate">${item.name}</span>
+          <button class="js-remove-item flex h-6 w-6 items-center justify-center rounded-full text-gray-600 hover:bg-gray-200 hover:text-red-600 transition-all flex-shrink-0 ml-1" data-index="${i}">
+            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        ${toppingsHtml ? `<div class="mt-0.5 flex flex-col gap-0.5">${toppingsHtml}</div>` : ''}
+        <div class="mt-1.5 flex items-center gap-2">
+          <button class="js-qty-down flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 text-xs text-gray-600 transition-all hover:border-red-300 hover:text-red-600" data-index="${i}" aria-label="Disminuir cantidad">-</button>
+          <span class="font-mono text-sm text-gray-700 min-w-[1.2rem] text-center font-semibold">${item.qty}</span>
+          <button class="js-qty-up flex h-6 w-6 items-center justify-center rounded-full border border-gray-300 text-xs text-gray-600 transition-all hover:border-red-300 hover:text-red-600" data-index="${i}" aria-label="Aumentar cantidad">+</button>
+          <span class="ml-auto font-mono text-base text-red-600 font-bold">${formatPrice(lineTotal)}</span>
         </div>
       </div>`
     }).join('')
@@ -489,17 +931,20 @@ const menu = [
     cartTaxRow.classList.toggle('hidden', !IVA_ON)
     cartTotal.textContent = formatPrice(total)
 
-    // WhatsApp message (clean, no prices)
-    const orderLines = state.items.map(i => '- ' + i.name + ' x' + i.qty)
+    const orderLines = state.items.flatMap(i => {
+      const lines = ['- ' + i.name + ' x' + i.qty]
+      if (i.toppings && i.toppings.length) {
+        i.toppings.forEach(t => lines.push('  + ' + t))
+      }
+      return lines
+    })
     const msgParts = ['Hola! Quiero hacer un pedido:', '']
     msgParts.push(...orderLines)
     msgParts.push('')
-    msgParts.push('Pago en: ' + (state.currency === 'usd' ? 'Divisas (USD)' : 'Bolivares (Bs)'))
-    if (state.payment) msgParts.push('Metodo de pago: ' + state.payment)
-    const msg = msgParts.join('%0A')
-    cartWaBtn.href = 'https://wa.me/584200000000?text=' + msg
+    msgParts.push('Pago en: ' + (state.currency === 'usd' ? 'Divisas (USD)' : 'Bolívares (Bs)'))
+    if (state.payment) msgParts.push('Método de pago: ' + state.payment)
+    cartWaBtn.href = 'https://wa.me/584200000000?text=' + msgParts.join('%0A')
 
-    // Re-bind cart events
     document.querySelectorAll('.js-qty-down').forEach(btn => {
       btn.addEventListener('click', () => {
         const idx = parseInt(btn.dataset.index)
@@ -524,24 +969,57 @@ const menu = [
     })
   }
 
-  // --- Menu add buttons ---
-  document.querySelectorAll('.menu-item').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const name = btn.dataset.name
-      const price = parseFloat(btn.dataset.price)
-      const existing = state.items.find(i => i.name === name)
-      if (existing) existing.qty++
-      else state.items.push({ name, price, qty: 1 })
-      const wasEmpty = state.items.length === 1 && state.items[0].qty === 1
-      renderCart()
-      if (wasEmpty) openCart()
-      showToast('Agregado: ' + name)
-      const addIcon = btn.querySelector('.flex-shrink-0')
-      if (addIcon) gsap.from(addIcon, { scale: 1.4, duration: 0.2, ease: 'power2.out' })
+  // --- Lightbox ---
+  const lightbox = document.getElementById('lightbox')
+  const lightboxImg = document.getElementById('lightbox-img')
+  const lightboxClose = document.getElementById('lightbox-close')
+
+  document.querySelectorAll('.js-zoom').forEach(img => {
+    img.addEventListener('click', (e) => {
+      e.stopPropagation()
+      const fullUrl = img.src.replace('w=600', 'w=1200')
+      lightboxImg.src = fullUrl
+      lightboxImg.alt = img.alt
+      lightbox.classList.remove('hidden')
+      gsap.from(lightboxImg, { scale: 0.9, opacity: 0, duration: 0.25, ease: 'power2.out' })
+      focusTrap(lightbox)
     })
   })
 
-  // --- Init ---
+  function closeLightbox() {
+    releaseTrap()
+    lightbox.classList.add('hidden')
+    lightboxImg.src = ''
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox)
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox() })
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox() })
+
+  // --- Scroll to top ---
+  const scrollTopBtn = document.getElementById('scroll-top')
+  window.addEventListener('scroll', () => {
+    const menuSection = document.getElementById('menu')
+    if (!menuSection) return
+    const rect = menuSection.getBoundingClientRect()
+    scrollTopBtn.classList.toggle('show', rect.top < 0 && rect.bottom < window.innerHeight)
+  })
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  })
+
+  // --- Menu item click → open detail modal ---
+  document.querySelectorAll('.menu-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const hasExtras = btn.dataset.hasExtras === 'true'
+      const name = btn.dataset.name
+      const price = parseFloat(btn.dataset.price)
+      const img = btn.dataset.img
+      const desc = btn.dataset.desc
+      openDetailModal(name, price, img, desc, hasExtras)
+    })
+  })
+
   fetchRate().finally(() => {
     applyRateToMenu()
     renderCart()

@@ -24,8 +24,20 @@ const whatsapp = 'https://wa.me/584241717524?text=Quiero%20desplegar%20mi%20proy
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://cryfield.dev" />
+    <meta property="og:url" content="https://cry.is-a.dev" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://cdn.lordicon.com https://ve.dolarapi.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' https://images.unsplash.com data:;
+      connect-src 'self' https://ve.dolarapi.com;
+      frame-src 'none';
+      object-src 'none';
+      base-uri 'self';
+    " />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -34,6 +46,8 @@ const whatsapp = 'https://wa.me/584241717524?text=Quiero%20desplegar%20mi%20proy
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
   </head>
   <body class="min-h-screen bg-cry-darkest text-cry-text antialiased">
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <div id="crosshair"><div class="cursor-block"></div></div>
     <div id="crt-overlay"></div>
 
@@ -44,7 +58,7 @@ const whatsapp = 'https://wa.me/584241717524?text=Quiero%20desplegar%20mi%20proy
           <span class="ml-2 text-xs font-normal text-cry-muted">cryfield.dev</span>
         </a>
         <div class="hidden items-center gap-6 text-sm text-cry-muted sm:flex">
-          <a href="#problema" class="transition-colors hover:text-cry-lime">El problema</a>
+          <a href="#problema" class="transition-colors hover:text-cry-lime">Diagnostico</a>
           <a href="#soluciones" class="transition-colors hover:text-cry-lime">Soluciones</a>
           <a href="#precios" class="transition-colors hover:text-cry-lime">Precios</a>
           <a href={whatsapp} target="_blank" rel="noopener noreferrer" class="rounded border border-cry-lime/40 bg-cry-lime/10 px-4 py-1.5 font-mono text-xs font-medium text-cry-lime transition-all hover:bg-cry-lime/20">
@@ -54,7 +68,7 @@ const whatsapp = 'https://wa.me/584241717524?text=Quiero%20desplegar%20mi%20proy
       </div>
     </nav>
 
-    <main>
+    <main id="main-content">
       <slot />
     </main>
 
@@ -64,7 +78,7 @@ const whatsapp = 'https://wa.me/584241717524?text=Quiero%20desplegar%20mi%20proy
           &lt;<span class="text-cry-text">CF</span>/&gt;
         </a>
         <div class="flex flex-wrap justify-center gap-6 text-sm text-cry-muted">
-          <a href="#problema" class="transition-colors hover:text-cry-lime">El problema</a>
+          <a href="#problema" class="transition-colors hover:text-cry-lime">Diagnostico</a>
           <a href="#soluciones" class="transition-colors hover:text-cry-lime">Soluciones</a>
           <a href="#precios" class="transition-colors hover:text-cry-lime">Precios</a>
           <a href="#faq" class="transition-colors hover:text-cry-lime">Preguntas</a>

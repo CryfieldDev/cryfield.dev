@@ -4,19 +4,20 @@ if "%1"=="stop" goto stop
 echo.
 echo Uso: server.bat [start^|stop]
 echo.
-echo   start   Enciende el dev server y el tunel de serveo
+echo   start   Enciende el dev server y el tunel de serveo con cry.is-a.dev
 echo   stop    Apaga todo
 echo.
 goto :eof
 
 :start
 echo [1/2] Iniciando Astro en puerto 3000...
-start "Astro Dev" cmd /k "npm run dev"
+start "Astro Dev" cmd /k "npm run dev -- --host"
 echo.
-echo [2/2] Conectando serveo.net (la URL publica aparecera en la ventana)...
-start "Serveo Tunnel" cmd /k "ssh -R 80:localhost:3000 serveo.net"
+echo [2/2] Conectando serveo.net para cry.is-a.dev...
+start "Serveo Tunnel" cmd /k "ssh -R cry.is-a.dev:80:localhost:3000 serveo.net"
 echo.
-echo Listo. Cierra las ventanas o usa "server.bat stop" para apagar.
+echo Listo. El sitio estara en https://cry.is-a.dev
+echo Las ventanas deben quedar abiertas. Usa "server.bat stop" para apagar.
 goto :eof
 
 :stop
