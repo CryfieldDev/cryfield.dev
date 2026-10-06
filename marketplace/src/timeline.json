@@ -1,0 +1,50 @@
+{
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "durationInFrames": 750,
+  "hook": {
+    "typeStart": 6,
+    "typeEnd": 30,
+    "error": 36,
+    "subStart": 40,
+    "subEnd": 50,
+    "crtOff": 52,
+    "slams": [60, 75, 90],
+    "flickerStart": 96,
+    "morph": 108
+  },
+  "drop": {
+    "land": 120,
+    "urlStart": 124,
+    "urlEnd": 140,
+    "tagline": [135, 150],
+    "wipe": 168,
+    "rapidStart": 180,
+    "rapidCount": 8
+  },
+  "plans": {
+    "start": 240,
+    "length": 120,
+    "rollStart": 8,
+    "rollLand": 36,
+    "badge": 14,
+    "featStart": 40,
+    "featStep": 6,
+    "button": 92,
+    "flip": 104,
+    "featureCounts": [7, 8, 8]
+  },
+  "cta": {
+    "start": 600,
+    "lineIn": 608,
+    "decodeStart": 614,
+    "decodeEnd": 628,
+    "slams": [630, 645],
+    "outro": 660,
+    "typeStart": 664,
+    "typeEnd": 684,
+    "final": 690,
+    "pulses": [705, 720, 735]
+  }
+}
