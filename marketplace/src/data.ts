@@ -12,7 +12,7 @@ export type Plan = {
 };
 
 export type Market = {
-  id: 'us-en' | 'us-es' | 've-es';
+  id: string;
   label: string;
   plans: Plan[];
   contact: { whatsapp: string; url: string };
@@ -44,6 +44,7 @@ export type Market = {
 
 const CONTACT_VE = { whatsapp: '+58 424-171-7524', url: 'cryfield.dev' };
 const CONTACT_US = { whatsapp: '+1 (913) 282-2091', url: 'cryfield.dev' };
+const CONTACT_DRAKO = { whatsapp: '+1 (817) 809-1205', url: 'cryfield.dev' };
 
 const featuresEn = [
   ['Single-section page', 'Clean, professional design', 'WhatsApp integrated', '1-year .com domain', '1 year of hosting in Germany', 'SSL certificate included', 'Google indexing'],
@@ -142,6 +143,15 @@ export const MARKETS: Market[] = [
     copy: { ...copyEs, note: 'Paga en USD o Bs · tasa BCV del día', renewal: 'Renovación desde el mes 13: $129/año o $15/mes' },
   },
 ];
+
+// Versiones para vendedores: mismo contenido de USA, con su número de WhatsApp
+const SELLERS = [{ id: 'drako', contact: CONTACT_DRAKO, markets: ['us-en', 'us-es'] }];
+for (const seller of SELLERS) {
+  for (const base of seller.markets) {
+    const m = MARKETS.find((x) => x.id === base)!;
+    MARKETS.push({ ...m, id: `${seller.id}-${base}`, label: `${m.label} · ${seller.id}`, contact: seller.contact });
+  }
+}
 
 export const getMarket = (id: string) => {
   const m = MARKETS.find((x) => x.id === id);

@@ -2,6 +2,7 @@
 //   npm run render                 → todo
 //   npm run render -- ve-es        → solo Venezuela
 //   npm run render -- us-en --solo-imagenes
+//   npm run render -- drako-us-en drako-us-es   → versiones del vendedor Drako
 import path from 'node:path';
 import { mkdirSync } from 'node:fs';
 import { bundle } from '@remotion/bundler';
@@ -10,7 +11,7 @@ import { renderMedia, renderStill, selectComposition } from '@remotion/renderer'
 const args = process.argv.slice(2);
 const onlyStills = args.includes('--solo-imagenes');
 const onlyVideo = args.includes('--solo-video');
-const all = ['us-en', 'us-es', 've-es'];
+const all = ['us-en', 'us-es', 've-es', 'drako-us-en', 'drako-us-es'];
 const markets = args.filter((a) => all.includes(a));
 const targets = markets.length ? markets : all;
 const browserExecutable = process.env.REMOTION_BROWSER || null;

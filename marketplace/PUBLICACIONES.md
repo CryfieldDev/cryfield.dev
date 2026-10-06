@@ -104,3 +104,14 @@ Renovación desde el mes 13: $129/año o $15/mes.
 
 📲 WhatsApp +58 424-171-7524 · cryfield.dev
 ```
+
+---
+
+## 🧑‍💼 Vendedor Drako — USA (`out/drako-us-en/` y `out/drako-us-es/`)
+
+Usa los mismos títulos, precios y descripciones de **USA — English** y **USA — Español**,
+pero cambia la última línea por:
+
+```
+📲 WhatsApp +1 (817) 809-1205 · cryfield.dev
+```
