@@ -33,7 +33,7 @@ Multi-page site, exclusive design from scratch, advanced animations, Node.js bac
 ✓ Google indexing
 ✓ Ultra-fast, 100% mobile
 
-Message me here or visit cryfield.dev
+📲 WhatsApp +1 (913) 282-2091 · cryfield.dev
 ```
 
 ---
@@ -66,7 +66,7 @@ Sitio multipágina, diseño exclusivo desde cero, animaciones avanzadas, backend
 ✓ Indexación en Google
 ✓ Ultra rápida y 100% móvil
 
-Escríbeme por aquí o visita cryfield.dev
+📲 WhatsApp +1 (913) 282-2091 · cryfield.dev
 ```
 
 ---

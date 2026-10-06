@@ -42,7 +42,8 @@ export type Market = {
   };
 };
 
-const CONTACT = { whatsapp: '+58 424-171-7524', url: 'cryfield.dev' };
+const CONTACT_VE = { whatsapp: '+58 424-171-7524', url: 'cryfield.dev' };
+const CONTACT_US = { whatsapp: '+1 (913) 282-2091', url: 'cryfield.dev' };
 
 const featuresEn = [
   ['Single-section page', 'Clean, professional design', 'WhatsApp integrated', '1-year .com domain', '1 year of hosting in Germany', 'SSL certificate included', 'Google indexing'],
@@ -89,7 +90,7 @@ export const MARKETS: Market[] = [
   {
     id: 'us-en',
     label: 'USA · English',
-    contact: CONTACT,
+    contact: CONTACT_US,
     plans: [
       { name: 'STARTER PLAN', short: 'STARTER', badge: 'ENTREPRENEUR', target: 'Ideal for entrepreneurs and businesses just starting out', price: '529.99', features: featuresEn[0] },
       { name: 'GROWTH PLAN', short: 'GROWTH', badge: 'MOST POPULAR', target: 'Perfect for restaurants, gyms and clinics', price: '629.99', features: featuresEn[1] },
@@ -121,7 +122,7 @@ export const MARKETS: Market[] = [
   {
     id: 'us-es',
     label: 'USA · Español',
-    contact: CONTACT,
+    contact: CONTACT_US,
     plans: [
       { name: 'PLAN STARTER', short: 'STARTER', badge: badgesEs[0], target: targetsEs[0], price: '529.99', features: featuresEs[0] },
       { name: 'PLAN GROWTH', short: 'GROWTH', badge: badgesEs[1], target: targetsEs[1], price: '629.99', features: featuresEs[1] },
@@ -132,7 +133,7 @@ export const MARKETS: Market[] = [
   {
     id: 've-es',
     label: 'Venezuela · Español',
-    contact: CONTACT,
+    contact: CONTACT_VE,
     plans: [
       { name: 'PLAN ECONÓMICO', short: 'ECONÓMICO', badge: badgesEs[0], target: targetsEs[0], price: '129.99', features: featuresEs[0] },
       { name: 'PLAN STARTER', short: 'STARTER', badge: badgesEs[1], target: targetsEs[1], price: '199.99', features: featuresEs[1] },
