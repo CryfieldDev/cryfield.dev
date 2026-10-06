@@ -91,6 +91,7 @@ export const Included: React.FC<{ market: string }> = ({ market }) => {
           </div>
           <div style={{ marginTop: 30, fontSize: 26, color: C.muted }}>
             &gt; {m.copy.note}
+            {m.copy.renewal ? <div>&gt; {m.copy.renewal}</div> : null}
             <span style={{ color: C.lime }}> ▌</span>
           </div>
         </div>
@@ -174,9 +175,10 @@ export const Compare: React.FC<{ market: string }> = ({ market }) => {
           </div>
         ))}
       </div>
-      <div style={{ position: 'absolute', bottom: 50, width: '100%', textAlign: 'center', fontFamily: MONO, fontSize: 25, color: '#9a9a9a' }}>
+      <div style={{ position: 'absolute', bottom: 34, width: '100%', textAlign: 'center', fontFamily: MONO, fontSize: 25, color: '#9a9a9a' }}>
         {m.copy.oneTime}
         <div style={{ marginTop: 8, color: C.lime }}>{m.copy.note}</div>
+        {m.copy.renewal ? <div style={{ marginTop: 8, fontSize: 22, color: C.muted }}>{m.copy.renewal}</div> : null}
       </div>
     </Frame>
   );
@@ -201,6 +203,9 @@ export const Contact: React.FC<{ market: string }> = ({ market }) => {
       <div style={{ position: 'absolute', top: 790, width: '100%', display: 'flex', justifyContent: 'center' }}>
         <Chip>{m.copy.note}</Chip>
       </div>
+      {m.copy.renewal ? (
+        <div style={{ position: 'absolute', top: 880, width: '100%', textAlign: 'center', fontFamily: MONO, fontSize: 24, color: C.muted }}>{m.copy.renewal}</div>
+      ) : null}
     </Frame>
   );
 };

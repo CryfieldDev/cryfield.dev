@@ -30,6 +30,7 @@ export type Market = {
     ctaFinal: string;
     ctaSlams: [string, string];
     note: string;
+    renewal?: string; // solo se muestra si existe
     // imágenes
     coverKicker: string;
     coverTitle: [string, string];
@@ -137,7 +138,7 @@ export const MARKETS: Market[] = [
       { name: 'PLAN STARTER', short: 'STARTER', badge: badgesEs[1], target: targetsEs[1], price: '199.99', features: featuresEs[1] },
       { name: 'PLAN CUSTOM', short: 'CUSTOM', badge: badgesEs[2], target: targetsEs[2], price: '599.99', features: featuresEs[2], highlight: true },
     ],
-    copy: { ...copyEs, note: 'Paga en USD o Bs · tasa BCV del día' },
+    copy: { ...copyEs, note: 'Paga en USD o Bs · tasa BCV del día', renewal: 'Renovación desde el mes 13: $129/año o $15/mes' },
   },
 ];
 

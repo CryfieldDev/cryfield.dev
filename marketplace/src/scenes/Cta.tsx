@@ -137,6 +137,22 @@ export const Cta: React.FC<{ m: Market; f: number }> = ({ m, f }) => {
               {m.copy.note}
             </div>
           </div>
+          {m.copy.renewal ? (
+            <div
+              style={{
+                position: 'absolute',
+                top: 1545,
+                width: '100%',
+                textAlign: 'center',
+                fontFamily: MONO,
+                fontSize: 28,
+                color: C.muted,
+                opacity: lerp(f, K.outro + 16, K.outro + 24, 0, 1),
+              }}
+            >
+              {m.copy.renewal}
+            </div>
+          ) : null}
         </>
       ) : null}
     </AbsoluteFill>
